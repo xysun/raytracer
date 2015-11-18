@@ -1,6 +1,6 @@
 class Sample{
-    float x,y;
 public:
+    float x,y;
     Sample(float, float); // declaration
 };
 
