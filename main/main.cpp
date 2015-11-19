@@ -17,10 +17,23 @@
 #include <iostream>
 #include <FreeImage.h>
 
+#include "Film.h"
+
 // main function below
 
 int main(int argc, const char * argv[]) {
     // insert code here...
+    
+    int w = 100;
+    int h = 100;
+    
+    Sample* sample;
+    
+    Sampler sampler = Sampler(w,h);
+    
+    while (sampler.getSample(sample)) {
+        ;
+    }
     
     // test free image
     FreeImage_Initialise();

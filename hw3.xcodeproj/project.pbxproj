@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9DBA6F671BFCC04A008DD6E6 /* Film.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DBA6F661BFCC04A008DD6E6 /* Film.h */; };
+		9DBA6F691BFCC087008DD6E6 /* Color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DBA6F681BFCC087008DD6E6 /* Color.h */; };
+		9DBA6F6B1BFCC0AA008DD6E6 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA6F6A1BFCC0AA008DD6E6 /* Color.cpp */; };
+		9DBA6F6D1BFCC270008DD6E6 /* Film.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA6F6C1BFCC270008DD6E6 /* Film.cpp */; };
+		9DBA6F6E1BFCC3A4008DD6E6 /* libfreeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D4176241BF961DB0098D913 /* libfreeimage.a */; };
+		9DBA6F701BFD56A0008DD6E6 /* FilmTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA6F6F1BFD56A0008DD6E6 /* FilmTest.cpp */; };
 		9DD852C91BFC08EF00FE12E3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DD852C81BFC08EF00FE12E3 /* Cocoa.framework */; };
 		9DD852CF1BFC096E00FE12E3 /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9DD852CE1BFC096E00FE12E3 /* gtest-all.cc */; };
 		9DD853021BFC0FED00FE12E3 /* Sampler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DD853011BFC0FED00FE12E3 /* Sampler.h */; };
@@ -71,6 +77,11 @@
 		9D4176231BF961CE0098D913 /* testscenes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = testscenes; path = hw3/testscenes; sourceTree = "<group>"; };
 		9D4176241BF961DB0098D913 /* libfreeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreeimage.a; path = hw3/osxlib/libfreeimage.a; sourceTree = "<group>"; };
 		9D4176261BF966380098D913 /* hw3-submissionscenes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "hw3-submissionscenes"; path = "hw3/hw3-submissionscenes"; sourceTree = "<group>"; };
+		9DBA6F661BFCC04A008DD6E6 /* Film.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Film.h; sourceTree = "<group>"; };
+		9DBA6F681BFCC087008DD6E6 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
+		9DBA6F6A1BFCC0AA008DD6E6 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
+		9DBA6F6C1BFCC270008DD6E6 /* Film.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Film.cpp; sourceTree = "<group>"; };
+		9DBA6F6F1BFD56A0008DD6E6 /* FilmTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FilmTest.cpp; sourceTree = "<group>"; };
 		9DD852BF1BFC08E100FE12E3 /* libgtest.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libgtest.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD852C81BFC08EF00FE12E3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		9DD852CE1BFC096E00FE12E3 /* gtest-all.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "gtest-all.cc"; sourceTree = "<group>"; };
@@ -97,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DBA6F6E1BFCC3A4008DD6E6 /* libfreeimage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +174,10 @@
 			children = (
 				9DD853011BFC0FED00FE12E3 /* Sampler.h */,
 				9DD853031BFC100500FE12E3 /* Sampler.cpp */,
+				9DBA6F661BFCC04A008DD6E6 /* Film.h */,
+				9DBA6F681BFCC087008DD6E6 /* Color.h */,
+				9DBA6F6A1BFCC0AA008DD6E6 /* Color.cpp */,
+				9DBA6F6C1BFCC270008DD6E6 /* Film.cpp */,
 			);
 			path = hw3;
 			sourceTree = "<group>";
@@ -171,6 +187,7 @@
 			children = (
 				9DD8530B1BFC103300FE12E3 /* main.cpp */,
 				9DD853161BFC108400FE12E3 /* SamplerTest.cpp */,
+				9DBA6F6F1BFD56A0008DD6E6 /* FilmTest.cpp */,
 			);
 			path = unittest;
 			sourceTree = "<group>";
@@ -197,6 +214,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DBA6F691BFCC087008DD6E6 /* Color.h in Headers */,
+				9DBA6F671BFCC04A008DD6E6 /* Film.h in Headers */,
 				9DD853021BFC0FED00FE12E3 /* Sampler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,7 +350,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DBA6F6D1BFCC270008DD6E6 /* Film.cpp in Sources */,
 				9DD853041BFC100500FE12E3 /* Sampler.cpp in Sources */,
+				9DBA6F6B1BFCC0AA008DD6E6 /* Color.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +362,7 @@
 			files = (
 				9DD853171BFC108400FE12E3 /* SamplerTest.cpp in Sources */,
 				9DD8530C1BFC103300FE12E3 /* main.cpp in Sources */,
+				9DBA6F701BFD56A0008DD6E6 /* FilmTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,20 +507,32 @@
 		9DD852FF1BFC0FD200FE12E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/hw3/osxlib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/jsun/code/ucsd/hw3/hw3/include/**";
 			};
 			name = Debug;
 		};
 		9DD853001BFC0FD200FE12E3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/hw3/osxlib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/jsun/code/ucsd/hw3/hw3/include/**";
 			};
 			name = Release;
 		};
@@ -565,6 +599,7 @@
 				9DD852C71BFC08E100FE12E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9DD852FE1BFC0FD200FE12E3 /* Build configuration list for PBXNativeTarget "hw3" */ = {
 			isa = XCConfigurationList;
@@ -573,6 +608,7 @@
 				9DD853001BFC0FD200FE12E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9DD8530D1BFC103300FE12E3 /* Build configuration list for PBXNativeTarget "unittest" */ = {
 			isa = XCConfigurationList;
@@ -581,6 +617,7 @@
 				9DD8530F1BFC103300FE12E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9DD853201BFC10FE00FE12E3 /* Build configuration list for PBXNativeTarget "main" */ = {
 			isa = XCConfigurationList;
@@ -589,6 +626,7 @@
 				9DD853221BFC10FE00FE12E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
