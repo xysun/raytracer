@@ -28,18 +28,19 @@ int main(int argc, const char * argv[]) {
     int h = 100;
     
     Sample* sample;
+    sample = new Sample(0.0, 0.0);
     
     Sampler sampler = Sampler(w,h);
+    Film film = Film(w,h);
     
-    while (sampler.getSample(sample)) {
-        ;
+    Color black = Color(0, 0, 0);
+    
+    for (int i = 0; i < w*h; i++) {
+        sampler.getSample(sample);
+        film.commit(*sample, black);
     }
     
-    // test free image
-    FreeImage_Initialise();
+    film.writeImage();
     
-    FreeImage_DeInitialise();
-    
-    std::cout << "Hello, World!\n";
     return 0;
 }
