@@ -35,8 +35,7 @@ int main(int argc, const char * argv[]) {
     
     Color black = Color(0, 0, 0);
     
-    for (int i = 0; i < w*h; i++) {
-        sampler.getSample(sample);
+    while (sampler.getSample(sample)) {
         film.commit(*sample, black);
     }
     
