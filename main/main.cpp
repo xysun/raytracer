@@ -18,20 +18,21 @@
 #include <FreeImage.h>
 
 #include "Film.h"
+#include "readfile.h"
 
 // main function below
 
 int main(int argc, const char * argv[]) {
     // insert code here...
     
-    int w = 100;
-    int h = 100;
+    Scene *scene = new Scene(10,10);
+    readfile(argv[1], scene);
     
     Sample* sample;
     sample = new Sample(0.0, 0.0);
     
-    Sampler sampler = Sampler(w,h);
-    Film film = Film(w,h);
+    Sampler sampler = Sampler(scene->w,scene->h);
+    Film film = Film(scene->w,scene->h);
     
     Color black = Color(0, 0, 0);
     

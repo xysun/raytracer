@@ -24,6 +24,11 @@
 		9DD8531F1BFC10FE00FE12E3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DD8531E1BFC10FE00FE12E3 /* main.cpp */; };
 		9DD853251BFC110C00FE12E3 /* libhw3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DD852F81BFC0FD200FE12E3 /* libhw3.dylib */; };
 		9DD853261BFC112200FE12E3 /* libfreeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D4176241BF961DB0098D913 /* libfreeimage.a */; };
+		9DF235301C029D34006A1909 /* readfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DF2352F1C029D34006A1909 /* readfile.cpp */; };
+		9DF235321C029D68006A1909 /* readfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DF235311C029D68006A1909 /* readfile.h */; };
+		9DF235371C02A02D006A1909 /* ReadFileTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DF235361C02A02C006A1909 /* ReadFileTest.cpp */; };
+		9DF2353A1C02A5E2006A1909 /* Scene.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DF235391C02A5E2006A1909 /* Scene.h */; };
+		9DF2353C1C02A5EA006A1909 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DF2353B1C02A5EA006A1909 /* Scene.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +98,13 @@
 		9DD853161BFC108400FE12E3 /* SamplerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SamplerTest.cpp; sourceTree = "<group>"; };
 		9DD8531C1BFC10FE00FE12E3 /* main */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = main; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD8531E1BFC10FE00FE12E3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		9DF2352F1C029D34006A1909 /* readfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = readfile.cpp; sourceTree = "<group>"; };
+		9DF235311C029D68006A1909 /* readfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = readfile.h; sourceTree = "<group>"; };
+		9DF235351C02A023006A1909 /* readfile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readfile.txt; sourceTree = "<group>"; };
+		9DF235361C02A02C006A1909 /* ReadFileTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ReadFileTest.cpp; sourceTree = "<group>"; };
+		9DF235391C02A5E2006A1909 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		9DF2353B1C02A5EA006A1909 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
+		9DF2353D1C02A6FE006A1909 /* scene.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scene.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +190,10 @@
 				9DBA6F681BFCC087008DD6E6 /* Color.h */,
 				9DBA6F6A1BFCC0AA008DD6E6 /* Color.cpp */,
 				9DBA6F6C1BFCC270008DD6E6 /* Film.cpp */,
+				9DF2352F1C029D34006A1909 /* readfile.cpp */,
+				9DF235311C029D68006A1909 /* readfile.h */,
+				9DF235391C02A5E2006A1909 /* Scene.h */,
+				9DF2353B1C02A5EA006A1909 /* Scene.cpp */,
 			);
 			path = hw3;
 			sourceTree = "<group>";
@@ -188,6 +204,8 @@
 				9DD8530B1BFC103300FE12E3 /* main.cpp */,
 				9DD853161BFC108400FE12E3 /* SamplerTest.cpp */,
 				9DBA6F6F1BFD56A0008DD6E6 /* FilmTest.cpp */,
+				9DF235351C02A023006A1909 /* readfile.txt */,
+				9DF235361C02A02C006A1909 /* ReadFileTest.cpp */,
 			);
 			path = unittest;
 			sourceTree = "<group>";
@@ -196,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				9DD8531E1BFC10FE00FE12E3 /* main.cpp */,
+				9DF2353D1C02A6FE006A1909 /* scene.txt */,
 			);
 			path = main;
 			sourceTree = "<group>";
@@ -214,9 +233,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DF235321C029D68006A1909 /* readfile.h in Headers */,
 				9DBA6F691BFCC087008DD6E6 /* Color.h in Headers */,
 				9DBA6F671BFCC04A008DD6E6 /* Film.h in Headers */,
 				9DD853021BFC0FED00FE12E3 /* Sampler.h in Headers */,
+				9DF2353A1C02A5E2006A1909 /* Scene.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,7 +372,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DBA6F6D1BFCC270008DD6E6 /* Film.cpp in Sources */,
+				9DF235301C029D34006A1909 /* readfile.cpp in Sources */,
 				9DD853041BFC100500FE12E3 /* Sampler.cpp in Sources */,
+				9DF2353C1C02A5EA006A1909 /* Scene.cpp in Sources */,
 				9DBA6F6B1BFCC0AA008DD6E6 /* Color.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DD853171BFC108400FE12E3 /* SamplerTest.cpp in Sources */,
+				9DF235371C02A02D006A1909 /* ReadFileTest.cpp in Sources */,
 				9DD8530C1BFC103300FE12E3 /* main.cpp in Sources */,
 				9DBA6F701BFD56A0008DD6E6 /* FilmTest.cpp in Sources */,
 			);
