@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Scene.h"
 
 //bool readvals (stringstream &s, const int numvals, float * values) ;

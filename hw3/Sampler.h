@@ -1,3 +1,5 @@
+#pragma once
+
 class Sample{
 public:
     float x,y;

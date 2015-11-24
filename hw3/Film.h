@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Sampler.h"
 #include "Color.h"
 
