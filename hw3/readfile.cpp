@@ -6,6 +6,7 @@
 using namespace std;
 
 #include "readfile.h"
+#include "Transform.h"
 
 bool readvals(stringstream &s, const int numvals, float* values)
 {
@@ -44,6 +45,17 @@ void readfile(const char* filename, Scene *scene)
                     if (validinput) {
                         scene->w = (int) values[0];
                         scene->h = (int) values[1];
+                    }
+                }else if (cmd == "camera"){
+                    validinput = readvals(s, 10, values);
+                    if (validinput){
+                        vec3 lookFrom = vec3(values[0], values[1], values[2]);
+                        vec3 lookAt = vec3(values[3], values[4], values[5]);
+                        scene->camera->lookFrom = lookFrom;
+                        scene->camera->lookAt = lookAt;
+                        scene->camera->fovy = values[9];
+                        vec3 zvec = lookFrom - lookAt;
+                        scene->camera->up = Transform::upvector(vec3(values[6], values[7], values[8]), zvec);
                     }
                 }
             }

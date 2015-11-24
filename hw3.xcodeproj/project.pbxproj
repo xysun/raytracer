@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9DA224CE1C03EEB200C99255 /* Camera.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DA224CD1C03EEB200C99255 /* Camera.h */; };
+		9DA224D01C03EEF000C99255 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA224CF1C03EEF000C99255 /* Camera.cpp */; };
+		9DA224D21C03F09000C99255 /* CameraTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA224D11C03F09000C99255 /* CameraTest.cpp */; };
+		9DA224D41C03F32A00C99255 /* Transform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DA224D31C03F32A00C99255 /* Transform.h */; };
+		9DA224D61C03F36400C99255 /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA224D51C03F36400C99255 /* Transform.cpp */; };
 		9DBA6F671BFCC04A008DD6E6 /* Film.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DBA6F661BFCC04A008DD6E6 /* Film.h */; };
 		9DBA6F691BFCC087008DD6E6 /* Color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DBA6F681BFCC087008DD6E6 /* Color.h */; };
 		9DBA6F6B1BFCC0AA008DD6E6 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA6F6A1BFCC0AA008DD6E6 /* Color.cpp */; };
@@ -82,6 +87,12 @@
 		9D4176231BF961CE0098D913 /* testscenes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = testscenes; path = hw3/testscenes; sourceTree = "<group>"; };
 		9D4176241BF961DB0098D913 /* libfreeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreeimage.a; path = hw3/osxlib/libfreeimage.a; sourceTree = "<group>"; };
 		9D4176261BF966380098D913 /* hw3-submissionscenes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "hw3-submissionscenes"; path = "hw3/hw3-submissionscenes"; sourceTree = "<group>"; };
+		9DA224CD1C03EEB200C99255 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		9DA224CF1C03EEF000C99255 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		9DA224D11C03F09000C99255 /* CameraTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraTest.cpp; sourceTree = "<group>"; };
+		9DA224D31C03F32A00C99255 /* Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
+		9DA224D51C03F36400C99255 /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
+		9DA224D71C03F51400C99255 /* glm-0.9.2.7 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "glm-0.9.2.7"; sourceTree = "<group>"; };
 		9DBA6F661BFCC04A008DD6E6 /* Film.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Film.h; sourceTree = "<group>"; };
 		9DBA6F681BFCC087008DD6E6 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		9DBA6F6A1BFCC0AA008DD6E6 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
@@ -184,6 +195,7 @@
 		9DD852F91BFC0FD200FE12E3 /* hw3 */ = {
 			isa = PBXGroup;
 			children = (
+				9DA224D71C03F51400C99255 /* glm-0.9.2.7 */,
 				9DD853011BFC0FED00FE12E3 /* Sampler.h */,
 				9DD853031BFC100500FE12E3 /* Sampler.cpp */,
 				9DBA6F661BFCC04A008DD6E6 /* Film.h */,
@@ -194,6 +206,10 @@
 				9DF235311C029D68006A1909 /* readfile.h */,
 				9DF235391C02A5E2006A1909 /* Scene.h */,
 				9DF2353B1C02A5EA006A1909 /* Scene.cpp */,
+				9DA224CD1C03EEB200C99255 /* Camera.h */,
+				9DA224CF1C03EEF000C99255 /* Camera.cpp */,
+				9DA224D31C03F32A00C99255 /* Transform.h */,
+				9DA224D51C03F36400C99255 /* Transform.cpp */,
 			);
 			path = hw3;
 			sourceTree = "<group>";
@@ -206,6 +222,7 @@
 				9DBA6F6F1BFD56A0008DD6E6 /* FilmTest.cpp */,
 				9DF235351C02A023006A1909 /* readfile.txt */,
 				9DF235361C02A02C006A1909 /* ReadFileTest.cpp */,
+				9DA224D11C03F09000C99255 /* CameraTest.cpp */,
 			);
 			path = unittest;
 			sourceTree = "<group>";
@@ -235,7 +252,9 @@
 			files = (
 				9DF235321C029D68006A1909 /* readfile.h in Headers */,
 				9DBA6F691BFCC087008DD6E6 /* Color.h in Headers */,
+				9DA224CE1C03EEB200C99255 /* Camera.h in Headers */,
 				9DBA6F671BFCC04A008DD6E6 /* Film.h in Headers */,
+				9DA224D41C03F32A00C99255 /* Transform.h in Headers */,
 				9DD853021BFC0FED00FE12E3 /* Sampler.h in Headers */,
 				9DF2353A1C02A5E2006A1909 /* Scene.h in Headers */,
 			);
@@ -373,6 +392,8 @@
 			files = (
 				9DBA6F6D1BFCC270008DD6E6 /* Film.cpp in Sources */,
 				9DF235301C029D34006A1909 /* readfile.cpp in Sources */,
+				9DA224D61C03F36400C99255 /* Transform.cpp in Sources */,
+				9DA224D01C03EEF000C99255 /* Camera.cpp in Sources */,
 				9DD853041BFC100500FE12E3 /* Sampler.cpp in Sources */,
 				9DF2353C1C02A5EA006A1909 /* Scene.cpp in Sources */,
 				9DBA6F6B1BFCC0AA008DD6E6 /* Color.cpp in Sources */,
@@ -387,6 +408,7 @@
 				9DF235371C02A02D006A1909 /* ReadFileTest.cpp in Sources */,
 				9DD8530C1BFC103300FE12E3 /* main.cpp in Sources */,
 				9DBA6F701BFD56A0008DD6E6 /* FilmTest.cpp in Sources */,
+				9DA224D21C03F09000C99255 /* CameraTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,7 +562,7 @@
 					"$(PROJECT_DIR)/hw3/osxlib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "/Users/jsun/code/ucsd/hw3/hw3/include/**";
+				USER_HEADER_SEARCH_PATHS = "/Users/jsun/code/ucsd/hw3/hw3/include/** /Users/jsun/code/ucsd/hw3/hw3/**";
 			};
 			name = Debug;
 		};
@@ -556,7 +578,7 @@
 					"$(PROJECT_DIR)/hw3/osxlib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "/Users/jsun/code/ucsd/hw3/hw3/include/**";
+				USER_HEADER_SEARCH_PATHS = "/Users/jsun/code/ucsd/hw3/hw3/include/** /Users/jsun/code/ucsd/hw3/hw3/**";
 			};
 			name = Release;
 		};
