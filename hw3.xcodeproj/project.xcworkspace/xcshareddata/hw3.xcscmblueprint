@@ -1,4 +1,5 @@
 {
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "873FE673C473F7B027E08848A14365A1B1118E2E",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
     "861a406c-534a-0410-8894-cb66d6ee9925++505" : {
       "DVTSourceControlWorkingCopyRepositoryBranchesLocationKey" : "branches",
@@ -7,10 +8,12 @@
     }
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "873FE673C473F7B027E08848A14365A1B1118E2E" : 0,
     "861a406c-534a-0410-8894-cb66d6ee9925++505" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8969211C-E094-4F8F-B846-E1CF0072FDBE",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "873FE673C473F7B027E08848A14365A1B1118E2E" : "hw3\/",
     "861a406c-534a-0410-8894-cb66d6ee9925++505" : "..\/googletest-read-only"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "hw3",
@@ -21,6 +24,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/googletest.googlecode.com\/svn",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "861a406c-534a-0410-8894-cb66d6ee9925++505"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:xysun\/ucsd-hw3.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "873FE673C473F7B027E08848A14365A1B1118E2E"
     }
   ]
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D7BF8AC1C04AE8B005AD405 /* TransformTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D7BF8AB1C04AE8B005AD405 /* TransformTest.cpp */; };
 		9DA224CE1C03EEB200C99255 /* Camera.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DA224CD1C03EEB200C99255 /* Camera.h */; };
 		9DA224D01C03EEF000C99255 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA224CF1C03EEF000C99255 /* Camera.cpp */; };
 		9DA224D21C03F09000C99255 /* CameraTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA224D11C03F09000C99255 /* CameraTest.cpp */; };
@@ -87,6 +88,7 @@
 		9D4176231BF961CE0098D913 /* testscenes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = testscenes; path = hw3/testscenes; sourceTree = "<group>"; };
 		9D4176241BF961DB0098D913 /* libfreeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreeimage.a; path = hw3/osxlib/libfreeimage.a; sourceTree = "<group>"; };
 		9D4176261BF966380098D913 /* hw3-submissionscenes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "hw3-submissionscenes"; path = "hw3/hw3-submissionscenes"; sourceTree = "<group>"; };
+		9D7BF8AB1C04AE8B005AD405 /* TransformTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransformTest.cpp; sourceTree = "<group>"; };
 		9DA224CD1C03EEB200C99255 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		9DA224CF1C03EEF000C99255 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		9DA224D11C03F09000C99255 /* CameraTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraTest.cpp; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				9DF235351C02A023006A1909 /* readfile.txt */,
 				9DF235361C02A02C006A1909 /* ReadFileTest.cpp */,
 				9DA224D11C03F09000C99255 /* CameraTest.cpp */,
+				9D7BF8AB1C04AE8B005AD405 /* TransformTest.cpp */,
 			);
 			path = unittest;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				9DF235371C02A02D006A1909 /* ReadFileTest.cpp in Sources */,
 				9DD8530C1BFC103300FE12E3 /* main.cpp in Sources */,
 				9DBA6F701BFD56A0008DD6E6 /* FilmTest.cpp in Sources */,
+				9D7BF8AC1C04AE8B005AD405 /* TransformTest.cpp in Sources */,
 				9DA224D21C03F09000C99255 /* CameraTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -588,6 +592,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				HEADER_SEARCH_PATHS = "/Users/jsun/code/googletest-read-only/include";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/jsun/code/ucsd/hw3/hw3/**";
 			};
 			name = Debug;
 		};
@@ -597,6 +602,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				HEADER_SEARCH_PATHS = "/Users/jsun/code/googletest-read-only/include";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/jsun/code/ucsd/hw3/hw3/**";
 			};
 			name = Release;
 		};
