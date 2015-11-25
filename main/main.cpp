@@ -42,5 +42,9 @@ int main(int argc, const char * argv[]) {
     
     film.writeImage();
     
+    // release dynamically allocated memory
+    delete sample;
+    delete scene;
+    
     return 0;
 }
