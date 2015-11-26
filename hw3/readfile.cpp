@@ -26,6 +26,7 @@ void readfile(const char* filename, Scene *scene)
     string str, cmd;
     ifstream in;
     in.open(filename);
+    int num_of_objects = 0;
   
     if (in.is_open()) {
         getline (in, str);
@@ -57,6 +58,13 @@ void readfile(const char* filename, Scene *scene)
                         vec3 zvec = lookFrom - lookAt;
                         scene->camera->up = Transform::upvector(vec3(values[6], values[7], values[8]), zvec);
                     }
+                }else if (cmd == "sphere"){
+                    validinput = readvals(s, 4, values);
+                    
+                    scene->shapes[num_of_objects] = new Sphere(vec3(values[0], values[1], values[2]), values[3]);
+                    
+                    num_of_objects += 1;
+                    
                 }
             }
             getline (in, str);

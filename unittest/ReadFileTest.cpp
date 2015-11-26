@@ -8,13 +8,26 @@ TEST(ReadFileTest, ReadCorrectValues) {
     
     readfile("/Users/jsun/code/ucsd/hw3/unittest/readfile.txt", scene);
     
+    // window
     EXPECT_EQ(scene->w, 100);
     EXPECT_EQ(scene->h, 100);
     
+    // camera
     EXPECT_EQ(scene->camera->up, vec3(0,1,0));
     EXPECT_EQ(scene->camera->lookFrom, vec3(0,0,2));
     EXPECT_EQ(scene->camera->lookAt, vec3(0,0,0));
     EXPECT_EQ(scene->camera->fovy, 90);
+    
+    // sphere1
+    Sphere *sphere = dynamic_cast<Sphere*>(scene->shapes[0]);
+    EXPECT_EQ(sphere->center, vec3(1,2,3));
+    EXPECT_EQ(sphere->radius, 4);
+    
+    // sphere2
+    Sphere *sphere2 = dynamic_cast<Sphere*>(scene->shapes[1]);
+    EXPECT_EQ(sphere2->center, vec3(5,6,7));
+    EXPECT_EQ(sphere2->radius, 8);
+    
     
 
 }

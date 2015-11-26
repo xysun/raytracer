@@ -34,9 +34,9 @@ public:
 };
 
 class Sphere:public Shape{
+public:
     vec3 center;
     float radius;
-public:
     Sphere(vec3, float);
     bool intersectP(Ray &ray);
     bool intersect(Ray &ray, float *thit, LocalGeo *local);
