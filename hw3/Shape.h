@@ -31,6 +31,7 @@ class Shape{
 public:
     virtual bool intersectP(Ray &ray) = 0;
     virtual bool intersect(Ray &ray, float *thit, LocalGeo *local) = 0;
+    virtual ~Shape() {};
 };
 
 class Sphere:public Shape{
@@ -38,6 +39,8 @@ public:
     vec3 center;
     float radius;
     Sphere(vec3, float);
+    ~Sphere(){};
+    
     bool intersectP(Ray &ray);
     bool intersect(Ray &ray, float *thit, LocalGeo *local);
 };

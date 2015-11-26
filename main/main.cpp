@@ -19,6 +19,7 @@
 
 #include "Film.h"
 #include "readfile.h"
+#include "variables.h"
 
 // main function below
 
@@ -44,6 +45,11 @@ int main(int argc, const char * argv[]) {
     
     // release dynamically allocated memory
     delete sample;
+    
+    for (int i = 0; i < scene->num_objects; i++) {
+        delete scene->shapes[i];
+    }
+    delete [] scene->shapes;
     delete scene;
     
     return 0;

@@ -20,6 +20,7 @@
 		9DBA6F6D1BFCC270008DD6E6 /* Film.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA6F6C1BFCC270008DD6E6 /* Film.cpp */; };
 		9DBA6F6E1BFCC3A4008DD6E6 /* libfreeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D4176241BF961DB0098D913 /* libfreeimage.a */; };
 		9DBA6F701BFD56A0008DD6E6 /* FilmTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA6F6F1BFD56A0008DD6E6 /* FilmTest.cpp */; };
+		9DC8BBF41C0694B600A7416F /* variables.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DC8BBF31C0694B600A7416F /* variables.h */; };
 		9DD852C91BFC08EF00FE12E3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DD852C81BFC08EF00FE12E3 /* Cocoa.framework */; };
 		9DD852CF1BFC096E00FE12E3 /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9DD852CE1BFC096E00FE12E3 /* gtest-all.cc */; };
 		9DD853021BFC0FED00FE12E3 /* Sampler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DD853011BFC0FED00FE12E3 /* Sampler.h */; };
@@ -101,6 +102,7 @@
 		9DBA6F681BFCC087008DD6E6 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		9DBA6F6C1BFCC270008DD6E6 /* Film.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Film.cpp; sourceTree = "<group>"; };
 		9DBA6F6F1BFD56A0008DD6E6 /* FilmTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FilmTest.cpp; sourceTree = "<group>"; };
+		9DC8BBF31C0694B600A7416F /* variables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = variables.h; sourceTree = "<group>"; };
 		9DD852BF1BFC08E100FE12E3 /* libgtest.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libgtest.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD852C81BFC08EF00FE12E3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		9DD852CE1BFC096E00FE12E3 /* gtest-all.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "gtest-all.cc"; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				9D7BF8AD1C04B856005AD405 /* Shape.h */,
 				9D7BF8AF1C04B8FF005AD405 /* Ray.h */,
 				9D7BF8B11C04B9BC005AD405 /* Shape.cpp */,
+				9DC8BBF31C0694B600A7416F /* variables.h */,
 			);
 			path = hw3;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				9DBA6F691BFCC087008DD6E6 /* Color.h in Headers */,
 				9DA224CE1C03EEB200C99255 /* Camera.h in Headers */,
 				9D7BF8B01C04B8FF005AD405 /* Ray.h in Headers */,
+				9DC8BBF41C0694B600A7416F /* variables.h in Headers */,
 				9DBA6F671BFCC04A008DD6E6 /* Film.h in Headers */,
 				9DA224D41C03F32A00C99255 /* Transform.h in Headers */,
 				9DD853021BFC0FED00FE12E3 /* Sampler.h in Headers */,
