@@ -5,23 +5,23 @@
 
 class Point{
 public:
-    float x,y,z;
-    Point(float _x, float _y, float _z)
-    {x = _x; y = _y; z = _z;};
+    vec3 p = vec3(0,0,0);
+    Point(vec3 _p)
+    {p = _p;};
 };
 
 class Normal{
 public:
-    float x,y,z;
-    Normal(float _x, float _y, float _z)
-    {x = _x; y = _y; z = _z;};
-    
+    vec3 p = vec3(0,0,0);
+    Normal(vec3 _p)
+    {p = _p;};
+
 };
 
 class LocalGeo{
 public:
-    Point point = Point(0,0,0);
-    Normal normal = Normal(0,0,0);
+    Point point = Point(vec3(0,0,0));
+    Normal normal = Normal(vec3(0,0,0));
     LocalGeo(Point _p, Normal _n)
     {point = _p; normal = _n;};
 };
@@ -35,6 +35,7 @@ public:
 };
 
 class Sphere:public Shape{
+    void get_quadratic_function(Ray &ray, float* a, float*b, float* c);
 public:
     vec3 center;
     float radius;
