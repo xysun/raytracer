@@ -42,14 +42,12 @@ int main(int argc, const char * argv[]) {
     Ray *ray = new Ray(vec3(0,0,0), vec3(0,0,0), 0, 0, 100);
     
     // TODO: show progress
-    
-    for (int i = 0; i < scene->num_objects; i++) {
-        while (sampler.getSample(sample)) {
+    while (sampler.getSample(sample)) {
+        film.commit(*sample, black); // default black
+        for (int i = 0; i < scene->num_objects; i++) {
             scene->camera->generateRay(*sample, ray, film);
             if (scene->shapes[i]->intersectP(*ray)) {
                 film.commit(*sample, red); // if hit, draw red
-            }else{
-                film.commit(*sample, black); // if not hit, draw black
             }
         }
     }
