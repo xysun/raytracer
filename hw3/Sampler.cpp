@@ -15,6 +15,7 @@ Sampler::Sampler(int _w, int _h){
 }
 
 bool Sampler::getSample(Sample *sample){
+    // return sample in the middle of pixel
     
     if (current_pixel >= pixels){ // used up
         return false;

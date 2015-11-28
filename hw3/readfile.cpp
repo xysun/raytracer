@@ -56,6 +56,8 @@ void readfile(const char* filename, Scene *scene)
                         scene->camera->fovy = values[9];
                         vec3 zvec = lookFrom - lookAt;
                         scene->camera->up = Transform::upvector(vec3(values[6], values[7], values[8]), zvec);
+                        
+                        scene->camera->setCoord();
                     }
                 }else if (cmd == "sphere"){
                     if (scene->num_objects < max_objects){

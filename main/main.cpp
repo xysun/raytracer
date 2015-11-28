@@ -20,6 +20,7 @@
 #include "Film.h"
 #include "readfile.h"
 #include "variables.h"
+#include "Ray.h"
 
 // main function below
 
@@ -36,15 +37,28 @@ int main(int argc, const char * argv[]) {
     Film film = Film(scene->w,scene->h);
     
     Color black = Color(0, 0, 0);
+    Color red = Color(255, 0, 0);
     
-    while (sampler.getSample(sample)) {
-        film.commit(*sample, black);
+    Ray *ray = new Ray(vec3(0,0,0), vec3(0,0,0), 0, 0, 100);
+    
+    // TODO: show progress
+    
+    for (int i = 0; i < scene->num_objects; i++) {
+        while (sampler.getSample(sample)) {
+            scene->camera->generateRay(*sample, ray, film);
+            if (scene->shapes[i]->intersectP(*ray)) {
+                film.commit(*sample, red); // if hit, draw red
+            }else{
+                film.commit(*sample, black); // if not hit, draw black
+            }
+        }
     }
     
     film.writeImage();
     
     // release dynamically allocated memory
     delete sample;
+    delete ray;
     
     for (int i = 0; i < scene->num_objects; i++) {
         delete scene->shapes[i];
