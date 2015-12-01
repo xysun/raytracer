@@ -16,4 +16,6 @@ public:
     Scene(int _w, int _h)
     {w = _w; h = _h; shapes = new Shape*[max_objects];};
     
+    bool intersect(Ray &ray, float *thit, LocalGeo *local);
+    
 };

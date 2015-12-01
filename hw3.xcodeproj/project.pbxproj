@@ -22,6 +22,7 @@
 		9DBA6F6E1BFCC3A4008DD6E6 /* libfreeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D4176241BF961DB0098D913 /* libfreeimage.a */; };
 		9DBA6F701BFD56A0008DD6E6 /* FilmTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DBA6F6F1BFD56A0008DD6E6 /* FilmTest.cpp */; };
 		9DBC7B1C1C09E5FE00F381A3 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DBC7B1B1C09E5FE00F381A3 /* Camera.cpp */; };
+		9DBC7B1E1C0A13B000F381A3 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 9DBC7B1D1C0A13B000F381A3 /* README.md */; };
 		9DC8BBF41C0694B600A7416F /* variables.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DC8BBF31C0694B600A7416F /* variables.h */; };
 		9DD852C91BFC08EF00FE12E3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DD852C81BFC08EF00FE12E3 /* Cocoa.framework */; };
 		9DD852CF1BFC096E00FE12E3 /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9DD852CE1BFC096E00FE12E3 /* gtest-all.cc */; };
@@ -34,6 +35,8 @@
 		9DD8531F1BFC10FE00FE12E3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DD8531E1BFC10FE00FE12E3 /* main.cpp */; };
 		9DD853251BFC110C00FE12E3 /* libhw3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DD852F81BFC0FD200FE12E3 /* libhw3.dylib */; };
 		9DD853261BFC112200FE12E3 /* libfreeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D4176241BF961DB0098D913 /* libfreeimage.a */; };
+		9DD8F48E1C0D2C1200374628 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DD8F48D1C0D2C1200374628 /* Scene.cpp */; };
+		9DD8F4981C0D310C00374628 /* SceneTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DD8F4971C0D310C00374628 /* SceneTest.cpp */; };
 		9DF235301C029D34006A1909 /* readfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DF2352F1C029D34006A1909 /* readfile.cpp */; };
 		9DF235321C029D68006A1909 /* readfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DF235311C029D68006A1909 /* readfile.h */; };
 		9DF235371C02A02D006A1909 /* ReadFileTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DF235361C02A02C006A1909 /* ReadFileTest.cpp */; };
@@ -106,6 +109,7 @@
 		9DBA6F6C1BFCC270008DD6E6 /* Film.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Film.cpp; sourceTree = "<group>"; };
 		9DBA6F6F1BFD56A0008DD6E6 /* FilmTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FilmTest.cpp; sourceTree = "<group>"; };
 		9DBC7B1B1C09E5FE00F381A3 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		9DBC7B1D1C0A13B000F381A3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9DC8BBF31C0694B600A7416F /* variables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = variables.h; sourceTree = "<group>"; };
 		9DD852BF1BFC08E100FE12E3 /* libgtest.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libgtest.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD852C81BFC08EF00FE12E3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -118,6 +122,10 @@
 		9DD853161BFC108400FE12E3 /* SamplerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SamplerTest.cpp; sourceTree = "<group>"; };
 		9DD8531C1BFC10FE00FE12E3 /* main */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = main; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD8531E1BFC10FE00FE12E3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		9DD8F48D1C0D2C1200374628 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
+		9DD8F4971C0D310C00374628 /* SceneTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneTest.cpp; sourceTree = "<group>"; };
+		9DD8F4991C0D314600374628 /* SceneTest1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SceneTest1.txt; sourceTree = "<group>"; };
+		9DD8F49A1C0D320E00374628 /* SceneTest2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SceneTest2.txt; sourceTree = "<group>"; };
 		9DF2352F1C029D34006A1909 /* readfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = readfile.cpp; sourceTree = "<group>"; };
 		9DF235311C029D68006A1909 /* readfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = readfile.h; sourceTree = "<group>"; };
 		9DF235351C02A023006A1909 /* readfile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readfile.txt; sourceTree = "<group>"; };
@@ -167,6 +175,7 @@
 		9D41760B1BF961370098D913 = {
 			isa = PBXGroup;
 			children = (
+				9DBC7B1D1C0A13B000F381A3 /* README.md */,
 				9DD852C81BFC08EF00FE12E3 /* Cocoa.framework */,
 				9D4176261BF966380098D913 /* hw3-submissionscenes */,
 				9D4176241BF961DB0098D913 /* libfreeimage.a */,
@@ -220,6 +229,7 @@
 				9DA224D51C03F36400C99255 /* Transform.cpp */,
 				9DA224D31C03F32A00C99255 /* Transform.h */,
 				9DC8BBF31C0694B600A7416F /* variables.h */,
+				9DD8F48D1C0D2C1200374628 /* Scene.cpp */,
 			);
 			path = hw3;
 			sourceTree = "<group>";
@@ -235,6 +245,9 @@
 				9DD853161BFC108400FE12E3 /* SamplerTest.cpp */,
 				9D078C611C07E80E00611678 /* ShapeTest.cpp */,
 				9D7BF8AB1C04AE8B005AD405 /* TransformTest.cpp */,
+				9DD8F4971C0D310C00374628 /* SceneTest.cpp */,
+				9DD8F4991C0D314600374628 /* SceneTest1.txt */,
+				9DD8F49A1C0D320E00374628 /* SceneTest2.txt */,
 			);
 			path = unittest;
 			sourceTree = "<group>";
@@ -405,9 +418,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DD8F48E1C0D2C1200374628 /* Scene.cpp in Sources */,
 				9DBA6F6D1BFCC270008DD6E6 /* Film.cpp in Sources */,
 				9DF235301C029D34006A1909 /* readfile.cpp in Sources */,
 				9DA224D61C03F36400C99255 /* Transform.cpp in Sources */,
+				9DBC7B1E1C0A13B000F381A3 /* README.md in Sources */,
 				9D7BF8B21C04B9BC005AD405 /* Shape.cpp in Sources */,
 				9DBC7B1C1C09E5FE00F381A3 /* Camera.cpp in Sources */,
 				9DD853041BFC100500FE12E3 /* Sampler.cpp in Sources */,
@@ -422,6 +437,7 @@
 				9DD853171BFC108400FE12E3 /* SamplerTest.cpp in Sources */,
 				9DF235371C02A02D006A1909 /* ReadFileTest.cpp in Sources */,
 				9DD8530C1BFC103300FE12E3 /* main.cpp in Sources */,
+				9DD8F4981C0D310C00374628 /* SceneTest.cpp in Sources */,
 				9DBA6F701BFD56A0008DD6E6 /* FilmTest.cpp in Sources */,
 				9D7BF8AC1C04AE8B005AD405 /* TransformTest.cpp in Sources */,
 				9DA224D21C03F09000C99255 /* CameraTest.cpp in Sources */,
