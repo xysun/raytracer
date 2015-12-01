@@ -50,6 +50,7 @@ int main(int argc, const char * argv[]) {
         scene->camera->generateRay(*sample, ray, film);
         
         if (scene->intersect(*ray, thit, local)) {
+            // TODO: set color
             film.commit(*sample, red);
         }
     }

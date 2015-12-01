@@ -12,6 +12,7 @@
 		9D7BF8AE1C04B856005AD405 /* Shape.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D7BF8AD1C04B856005AD405 /* Shape.h */; };
 		9D7BF8B01C04B8FF005AD405 /* Ray.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D7BF8AF1C04B8FF005AD405 /* Ray.h */; };
 		9D7BF8B21C04B9BC005AD405 /* Shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D7BF8B11C04B9BC005AD405 /* Shape.cpp */; };
+		9D86EDC31C0DF48700CAC6E4 /* Light.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D86EDC21C0DF48700CAC6E4 /* Light.h */; };
 		9DA224CE1C03EEB200C99255 /* Camera.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DA224CD1C03EEB200C99255 /* Camera.h */; };
 		9DA224D21C03F09000C99255 /* CameraTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA224D11C03F09000C99255 /* CameraTest.cpp */; };
 		9DA224D41C03F32A00C99255 /* Transform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DA224D31C03F32A00C99255 /* Transform.h */; };
@@ -99,6 +100,7 @@
 		9D7BF8AD1C04B856005AD405 /* Shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shape.h; sourceTree = "<group>"; };
 		9D7BF8AF1C04B8FF005AD405 /* Ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ray.h; sourceTree = "<group>"; };
 		9D7BF8B11C04B9BC005AD405 /* Shape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shape.cpp; sourceTree = "<group>"; };
+		9D86EDC21C0DF48700CAC6E4 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = "<group>"; };
 		9DA224CD1C03EEB200C99255 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		9DA224D11C03F09000C99255 /* CameraTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraTest.cpp; sourceTree = "<group>"; };
 		9DA224D31C03F32A00C99255 /* Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				9DA224D31C03F32A00C99255 /* Transform.h */,
 				9DC8BBF31C0694B600A7416F /* variables.h */,
 				9DD8F48D1C0D2C1200374628 /* Scene.cpp */,
+				9D86EDC21C0DF48700CAC6E4 /* Light.h */,
 			);
 			path = hw3;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				9DBA6F691BFCC087008DD6E6 /* Color.h in Headers */,
 				9DA224CE1C03EEB200C99255 /* Camera.h in Headers */,
 				9D7BF8B01C04B8FF005AD405 /* Ray.h in Headers */,
+				9D86EDC31C0DF48700CAC6E4 /* Light.h in Headers */,
 				9DC8BBF41C0694B600A7416F /* variables.h in Headers */,
 				9DBA6F671BFCC04A008DD6E6 /* Film.h in Headers */,
 				9DA224D41C03F32A00C99255 /* Transform.h in Headers */,

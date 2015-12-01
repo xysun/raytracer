@@ -28,6 +28,11 @@ TEST(ReadFileTest, ReadCorrectValues) {
     EXPECT_EQ(sphere2->center, vec3(5,6,7));
     EXPECT_EQ(sphere2->radius, 8);
     
+    // light
+    AmbientLight *light1 = dynamic_cast<AmbientLight*>(scene->lights[0]);
+    EXPECT_EQ(light1->color.r, 10);
+    EXPECT_EQ(light1->color.g, 20);
+    EXPECT_EQ(light1->color.b, 30);
     
 
 }

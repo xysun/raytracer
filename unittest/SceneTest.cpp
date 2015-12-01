@@ -15,6 +15,9 @@ TEST(SceneTest, NoIntersectTest) {
     
     EXPECT_EQ(scene->intersect(ray, thit, local), false);
     
+    delete thit;
+    delete local;
+    
 }
 
 TEST(SceneTest, ClosestIntersectTest){
@@ -31,6 +34,9 @@ TEST(SceneTest, ClosestIntersectTest){
     EXPECT_EQ(*thit, 1);
     EXPECT_EQ(local->point.p.z, 1);
     EXPECT_EQ(local->normal.p.z, 1);
+    
+    delete thit;
+    delete local;
     
     
 }
