@@ -76,8 +76,18 @@ void readfile(const char* filename, Scene *scene)
                     }else{
                         printf("max number of lights reached\n");
                     }
-                    
+                }else if (cmd == "point"){
+                    if (scene->num_lights < max_lights) {
+                        validinput = readvals(s, 6, values);
+                        vec3 pos = vec3(values[0], values[1], values[2]);
+                        Color color = Color(values[3], values[4], values[5]);
+                        scene->lights[scene->num_lights] = new PointLight(color, pos);
+                        scene->num_lights += 1;
+                    }else{
+                        printf("max number of lights reached\n");
+                    }
                 }
+                
             }
             getline (in, str);
         }

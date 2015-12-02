@@ -21,3 +21,17 @@ public:
     ~AmbientLight(){};
     
 };
+
+class PointLight:public Light{
+public:
+    std::string name = "point";
+    Color color = Color(0,0,0);
+    vec3 position = vec3(0,0,0);
+    
+    PointLight(Color _color, vec3 _pos){
+        color = _color;
+        position = _pos;
+    }
+    
+    ~PointLight(){};
+};
