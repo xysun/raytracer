@@ -47,11 +47,12 @@ int main(int argc, const char * argv[]) {
     // TODO: show progress
     while (sampler.getSample(sample)) {
         film.commit(*sample, black); // default black
+        // generate ray
         scene->camera->generateRay(*sample, ray, film);
         
         if (scene->intersect(*ray, thit, local)) {
-            // TODO: set color
-            film.commit(*sample, red);
+            Color color = scene->findColor(local);
+            film.commit(*sample, color);
         }
     }
     

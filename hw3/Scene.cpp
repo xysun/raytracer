@@ -22,3 +22,19 @@ bool Scene::intersect(Ray &ray, float *thit, LocalGeo *local){
     return hit;
     
 }
+
+Color Scene::findColor(LocalGeo *local) {
+    
+    Color color = Color(0, 0, 0);
+    
+    for (int i = 0; i < num_lights; i++) {
+        if (dynamic_cast<AmbientLight*>(lights[i]) != 0) {
+            AmbientLight* light = dynamic_cast<AmbientLight*>(lights[i]);
+            color.r += light->color.r;
+            color.g += light->color.g;
+            color.b += light->color.b;
+        }
+    }
+    
+    return color;
+}

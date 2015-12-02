@@ -6,3 +6,5 @@ camera 0 0 2 0 0 0 0 1 0 90
 
 sphere 0 0 -2 2
 #sphere 1 0 -1 2
+
+ambient 255 0 0
