@@ -25,11 +25,19 @@ TEST(ReadFileTest, ReadCorrectValues) {
     Sphere *sphere = dynamic_cast<Sphere*>(scene->shapes[0]);
     EXPECT_EQ(sphere->center, vec3(1,2,3));
     EXPECT_EQ(sphere->radius, 4);
+    float diffuse1[3] = {1,2,3};
+    for (int i = 0; i < 3; i++) {
+        EXPECT_EQ(sphere->diffuse[i], diffuse1[i]);
+    }
     
     // sphere2
     Sphere *sphere2 = dynamic_cast<Sphere*>(scene->shapes[1]);
     EXPECT_EQ(sphere2->center, vec3(5,6,7));
     EXPECT_EQ(sphere2->radius, 8);
+    float diffuse2[3] = {4,5,6};
+    for (int i = 0; i < 3; i++) {
+        EXPECT_EQ(sphere2->diffuse[i], diffuse2[i]);
+    }
     
     // light
     EXPECT_EQ(scene->num_lights, 2);

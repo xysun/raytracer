@@ -39,6 +39,7 @@ void readfile(const char* filename, Scene *scene)
                 
                 float values[10];
                 bool validinput;
+                float diffuse[3];
                 
                 if (cmd == "size") {
                     validinput = readvals(s,2,values);
@@ -59,10 +60,18 @@ void readfile(const char* filename, Scene *scene)
                         
                         scene->camera->setCoord();
                     }
-                }else if (cmd == "sphere"){
+                }else if(cmd == "diffuse"){
+                    validinput = readvals(s, 3, values);
+                    diffuse[0] = values[0];
+                    diffuse[1] = values[1];
+                    diffuse[2] = values[2];
+                }
+                else if (cmd == "sphere"){
                     if (scene->num_objects < max_objects){
                         validinput = readvals(s, 4, values);
                         scene->shapes[scene->num_objects] = new Sphere(vec3(values[0], values[1], values[2]), values[3]);
+                        // set material
+                        scene->shapes[scene->num_objects]->set_diffuse(diffuse);
                         scene->num_objects += 1;
                     }else{
                         printf("max number of objects reached\n");

@@ -29,9 +29,16 @@ public:
 
 class Shape{
 public:
+    float diffuse[3] = {0,0,0};
     virtual bool intersectP(Ray &ray) = 0;
     virtual bool intersect(Ray &ray, float *thit, LocalGeo *local) = 0;
     virtual ~Shape() {};
+    
+    void set_diffuse(float _diffuse[3]){
+        diffuse[0] = _diffuse[0];
+        diffuse[1] = _diffuse[1];
+        diffuse[2] = _diffuse[2];
+    }
 };
 
 class Sphere:public Shape{
