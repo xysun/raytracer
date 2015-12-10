@@ -4,7 +4,9 @@ size 200 200
 
 camera 0 0 2 0 0 0 0 1 0 90
 
+diffuse 1 0.5 0.5
 sphere 0 0 -2 2
 #sphere 1 0 -1 2
 
-ambient 255 0 0
+#ambient 10 10 10
+point 0 2 0 255 0 0

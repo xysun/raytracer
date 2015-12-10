@@ -27,7 +27,7 @@ bool Scene::intersect(Ray &ray, float *thit, Intersection *in){
     
 }
 
-Color Scene::findColor(LocalGeo *local) {
+Color Scene::findColor(Intersection *in) {
     
     Color color = Color(0, 0, 0);
     
@@ -42,8 +42,18 @@ Color Scene::findColor(LocalGeo *local) {
         
         if (dynamic_cast<PointLight*>(lights[i]) != 0) {
             PointLight* light = dynamic_cast<PointLight*>(lights[i]);
-            // TODO: point light = diffuse * light color * max (normal dot direction, 0);
+            // point light = diffuse * light color * max (normal dot direction, 0);
+            vec3 direction = glm::normalize(light->position - in->localGeo->point.p);
+            vec3 normal = in->localGeo->normal.p;
+            vec3 diffuse = vec3(in->shape->diffuse[0], in->shape->diffuse[1], in->shape->diffuse[2]);
+            vec3 lightColor = vec3((int)light->color.r, (int)light->color.g, (int)light->color.b);
             
+            float nDotL = glm::dot(normal, direction);
+            float m = nDotL > 0? nDotL : 0;
+            
+            color.r += diffuse.x * lightColor.x * m;
+            color.g += diffuse.y * lightColor.y * m;
+            color.b += diffuse.z * lightColor.z * m;
         }
     }
     

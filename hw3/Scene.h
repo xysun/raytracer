@@ -26,6 +26,6 @@ public:
     
     bool intersect(Ray &ray, float *thit, Intersection *in);
     
-    Color findColor(LocalGeo *local);
+    Color findColor(Intersection *in);
     
 };

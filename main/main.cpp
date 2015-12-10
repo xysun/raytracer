@@ -42,7 +42,7 @@ int main(int argc, const char * argv[]) {
     Ray *ray = new Ray(vec3(0,0,0), vec3(0,0,0), 0, 0, 100);
     
     float *thit = new float(INFINITY);
-    LocalGeo *local = new LocalGeo(Point(vec3(0,0,0)), Normal(vec3(0,0,0)));
+    Intersection *in = new Intersection();
     
     // TODO: show progress
     while (sampler.getSample(sample)) {
@@ -50,8 +50,8 @@ int main(int argc, const char * argv[]) {
         // generate ray
         scene->camera->generateRay(*sample, ray, film);
         
-        if (scene->intersect(*ray, thit, local)) {
-            Color color = scene->findColor(local);
+        if (scene->intersect(*ray, thit, in)) {
+            Color color = scene->findColor(in);
             film.commit(*sample, color);
         }
     }
@@ -62,7 +62,7 @@ int main(int argc, const char * argv[]) {
     delete sample;
     delete ray;
     delete thit;
-    delete local;
+    delete in;
     
     for (int i = 0; i < scene->num_objects; i++) {
         delete scene->shapes[i];
