@@ -40,18 +40,26 @@ Color Scene::computePointLight(vec3 direction,
     vec3 diffuse = vec3(shape->diffuse[0], shape->diffuse[1], shape->diffuse[2]);
     vec3 specular = vec3(shape->specular[0], shape->specular[1], shape->specular[2]);
     
-    Color lambert = Color(diffuse.x * lightColor.x * m,
-                          diffuse.y * lightColor.y * m,
-                          diffuse.z * lightColor.z * m);
+    Color lambert = Color(diffuse.x/255 * lightColor.x/255 * m * 255,
+                          diffuse.y/255 * lightColor.y/255 * m * 255,
+                          diffuse.z/255 * lightColor.z/255 * m * 255);
     
     // phong: myspecular * lightcolor * pow (max(nDotH, 0.0), myshininess)
     float nDotH = glm::dot(normal, halfvec);
     float n = nDotH > 0? nDotH : 0;
     float pn = powf(n, shape->shininess);
     
-    Color phong = Color(specular.x * lightColor.x * pn,
-                        specular.y * lightColor.y * pn,
-                        specular.z * lightColor.z * pn);
+    Color phong = Color(specular.x/255 * lightColor.x/255 * pn * 255,
+                        specular.y/255 * lightColor.y/255 * pn * 255,
+                        specular.z/255 * lightColor.z/255 * pn * 255);
+    
+    if (pn > 0.01) {
+        printf("normal: %.f %.f %.f\n", normal.x, normal.y, normal.z);
+        printf("halfvec: %.f %.f %.f\n", halfvec.x, halfvec.y, halfvec.z);
+        printf("nDotH: %.3f", nDotH);
+        printf("pn: %.3f", pn);
+        printf("phong: %d %d %d\n", phong.r, phong.g, phong.b);
+    }
     
     return Color(lambert.r + phong.r,
                  lambert.g + phong.g,
@@ -108,6 +116,9 @@ Color Scene::findColor(Intersection *in) {
             color.b += directionalColor.b;
             
         }
+        
+        // clamp to (0,255) range
+        color.clamp();
     }
     
     return color;

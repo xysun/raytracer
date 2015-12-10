@@ -8,4 +8,10 @@ public:
         g = (unsigned char) _g;
         b = (unsigned char) _b;
     };
+    
+    void clamp(){
+        r = r > 255? 255:r;
+        g = g > 255? 255:g;
+        b = b > 255? 255:b;
+    }
 };
