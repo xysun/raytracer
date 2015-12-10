@@ -33,6 +33,8 @@ class Shape{
 public:
     float diffuse[3] = {0,0,0};
     float shininess = 0;
+    float specular[3] = {0,0,0};
+    
     virtual bool intersectP(Ray &ray) = 0;
     virtual bool intersect(Ray &ray, float *thit, LocalGeo *local) = 0;
     virtual ~Shape() {};
@@ -45,6 +47,12 @@ public:
     
     void set_shininess(float _s){
         shininess = _s;
+    }
+    
+    void set_specular(float _specular[3]){
+        specular[0] = _specular[0];
+        specular[1] = _specular[1];
+        specular[2] = _specular[2];
     }
 };
 
