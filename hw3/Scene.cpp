@@ -51,9 +51,29 @@ Color Scene::findColor(Intersection *in) {
             float nDotL = glm::dot(normal, direction);
             float m = nDotL > 0? nDotL : 0;
             
-            color.r += diffuse.x * lightColor.x * m;
-            color.g += diffuse.y * lightColor.y * m;
-            color.b += diffuse.z * lightColor.z * m;
+            Color lambert = Color(diffuse.x * lightColor.x * m,
+                                  diffuse.y * lightColor.y * m,
+                                  diffuse.z * lightColor.z * m);
+            
+            // phong: for specular
+            // myspecular * lightcolor * pow (max(nDotH, 0.0), myshininess)
+            vec3 eyepos = vec3(0,0,0);
+            vec3 eyedirn = glm::normalize(eyepos - in->localGeo->point.p);
+            vec3 halfvec = glm::normalize(eyedirn + direction);
+            float nDotH = glm::dot(normal, halfvec);
+            float n = nDotH > 0? nDotH : 0;
+            float pn = powf(n, in->shape->shininess);
+            vec3 specular = vec3(in->shape->specular[0], in->shape->specular[1], in->shape->specular[2]);
+            
+            
+            Color phong = Color(specular.x * lightColor.x * pn,
+                                specular.y * lightColor.y * pn,
+                                specular.z * lightColor.z * pn);
+            
+            
+            color.r += lambert.r + phong.r;
+            color.g += lambert.g + phong.g;
+            color.b += lambert.b + phong.b;
         }
     }
     
