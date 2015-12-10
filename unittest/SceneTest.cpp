@@ -11,12 +11,12 @@ TEST(SceneTest, NoIntersectTest) {
     Ray ray = Ray(vec3(0,0,2), vec3(0,0,-1), 0, 0, 100);
     
     float *thit = new float(INFINITY);
-    LocalGeo *local = new LocalGeo(Point(vec3(0,0,0)), Normal(vec3(0,0,0)));
+    Intersection *in = new Intersection();
     
-    EXPECT_EQ(scene->intersect(ray, thit, local), false);
+    EXPECT_EQ(scene->intersect(ray, thit, in), false);
     
     delete thit;
-    delete local;
+    delete in;
     
 }
 
@@ -28,15 +28,22 @@ TEST(SceneTest, ClosestIntersectTest){
     Ray ray = Ray(vec3(0,0,2), vec3(0,0,-1), 0, 0, 100);
     
     float *thit = new float(INFINITY);
-    LocalGeo *local = new LocalGeo(Point(vec3(0,0,0)), Normal(vec3(0,0,0)));
+    Intersection *in = new Intersection();
     
-    EXPECT_EQ(scene->intersect(ray, thit, local), true);
+    EXPECT_EQ(scene->intersect(ray, thit, in), true);
     EXPECT_EQ(*thit, 1);
-    EXPECT_EQ(local->point.p.z, 1);
-    EXPECT_EQ(local->normal.p.z, 1);
+    EXPECT_EQ(in->localGeo->point.p.z, 1);
+    EXPECT_EQ(in->localGeo->normal.p.z, 1);
+    
+    
+    Sphere* sphere = dynamic_cast<Sphere*>(in->shape);
+    EXPECT_EQ(sphere->center.z, 0);
+    EXPECT_EQ(sphere->center.x, 0);
+    EXPECT_EQ(sphere->center.y, 0);
+    
     
     delete thit;
-    delete local;
+    delete in;
     
     
 }

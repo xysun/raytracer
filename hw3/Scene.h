@@ -24,7 +24,7 @@ public:
         lights = new Light*[max_lights];
     };
     
-    bool intersect(Ray &ray, float *thit, LocalGeo *local);
+    bool intersect(Ray &ray, float *thit, Intersection *in);
     
     Color findColor(LocalGeo *local);
     

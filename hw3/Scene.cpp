@@ -1,23 +1,27 @@
 #include "Scene.h"
 
-bool Scene::intersect(Ray &ray, float *thit, LocalGeo *local){
+bool Scene::intersect(Ray &ray, float *thit, Intersection *in){
     // go through every object in scene, return closest
     float _thit = INFINITY;
     LocalGeo _local = LocalGeo(Point(vec3(0,0,0)), Normal(vec3(0,0,0)));
+    Shape *_shape = new Sphere();
+    
     bool hit = false;
     
     for (int i = 0; i < num_objects; i++) {
-        if (shapes[i]->intersect(ray, thit, local)){
+        if (shapes[i]->intersect(ray, thit, in->localGeo)){
             if (*thit <= _thit) {
                 _thit = *thit;
-                _local = *local;
+                _local = *(in->localGeo);
+                _shape = shapes[i];
             }
             hit = true;
         }
     }
     
     *thit = _thit;
-    *local = _local;
+    *(in->localGeo) = _local;
+    in->shape = _shape;
     
     return hit;
     
@@ -38,6 +42,7 @@ Color Scene::findColor(LocalGeo *local) {
         
         if (dynamic_cast<PointLight*>(lights[i]) != 0) {
             PointLight* light = dynamic_cast<PointLight*>(lights[i]);
+            // TODO: point light = diffuse * light color * max (normal dot direction, 0);
             
         }
     }
