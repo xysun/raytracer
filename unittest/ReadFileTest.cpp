@@ -50,7 +50,7 @@ TEST(ReadFileTest, ReadCorrectValues) {
     }
     
     // light
-    EXPECT_EQ(scene->num_lights, 2);
+    EXPECT_EQ(scene->num_lights, 3);
     // ambient
     AmbientLight *light1 = dynamic_cast<AmbientLight*>(scene->lights[0]);
     EXPECT_EQ(light1->color.r, 10);
@@ -65,6 +65,15 @@ TEST(ReadFileTest, ReadCorrectValues) {
     EXPECT_EQ(light2->color.r, 10);
     EXPECT_EQ(light2->color.g, 20);
     EXPECT_EQ(light2->color.b, 30);
+    
+    // directional
+    DirectionalLight *light3 = dynamic_cast<DirectionalLight*>(scene->lights[2]);
+    EXPECT_EQ(light3->position.x, 0);
+    EXPECT_EQ(light3->position.y, 1);
+    EXPECT_EQ(light3->position.z, 2);
+    EXPECT_EQ(light3->color.r, 10);
+    EXPECT_EQ(light3->color.g, 20);
+    EXPECT_EQ(light3->color.b, 30);
     
 
 }
