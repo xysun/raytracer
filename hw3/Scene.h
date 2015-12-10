@@ -28,4 +28,10 @@ public:
     
     Color findColor(Intersection *in);
     
+    Color computePointLight(vec3 direction,
+                            vec3 lightColor,
+                            vec3 normal,
+                            vec3 halfvec,
+                            Shape* shape);
+    
 };
