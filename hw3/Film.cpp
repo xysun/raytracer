@@ -33,10 +33,12 @@ void Film::commit(Sample sample, Color color){
     
     int j = i * 3; // starting element
     
+    color.clamp();
+    
     // free image using BGR order
-    pixels[j] = color.b;
-    pixels[j+1] = color.g;
-    pixels[j+2] = color.r;
+    pixels[j] = (unsigned char) (color.b * 255);
+    pixels[j+1] = (unsigned char) (color.g * 255);
+    pixels[j+2] = (unsigned char) (color.r * 255);
 }
 
 unsigned char Film::getPixel(int i){

@@ -40,18 +40,18 @@ Color Scene::computePointLight(vec3 direction,
     vec3 diffuse = vec3(shape->diffuse[0], shape->diffuse[1], shape->diffuse[2]);
     vec3 specular = vec3(shape->specular[0], shape->specular[1], shape->specular[2]);
     
-    Color lambert = Color(diffuse.x/255 * lightColor.x/255 * m * 255,
-                          diffuse.y/255 * lightColor.y/255 * m * 255,
-                          diffuse.z/255 * lightColor.z/255 * m * 255);
+    Color lambert = Color(diffuse.x * lightColor.x * m,
+                          diffuse.y * lightColor.y * m,
+                          diffuse.z * lightColor.z * m);
     
     // phong: myspecular * lightcolor * pow (max(nDotH, 0.0), myshininess)
     float nDotH = glm::dot(normal, halfvec);
     float n = nDotH > 0? nDotH : 0;
     float pn = powf(n, shape->shininess);
     
-    Color phong = Color(specular.x/255 * lightColor.x/255 * pn * 255,
-                        specular.y/255 * lightColor.y/255 * pn * 255,
-                        specular.z/255 * lightColor.z/255 * pn * 255);
+    Color phong = Color(specular.x * lightColor.x * pn,
+                        specular.y * lightColor.y * pn,
+                        specular.z * lightColor.z * pn);
     
     if (pn > 0.01) {
         printf("normal: %.f %.f %.f\n", normal.x, normal.y, normal.z);
@@ -89,7 +89,7 @@ Color Scene::findColor(Intersection *in) {
         if (dynamic_cast<PointLight*>(lights[i]) != 0) {
             PointLight* light = dynamic_cast<PointLight*>(lights[i]);
             vec3 direction = glm::normalize(light->position - in->localGeo->point.p);
-            vec3 lightColor = vec3((int)light->color.r, (int)light->color.g, (int)light->color.b);
+            vec3 lightColor = vec3(light->color.r, light->color.g, light->color.b);
             vec3 halfvec = glm::normalize(eyedirn + direction);
             
             Color pointColor = computePointLight(direction,
@@ -106,7 +106,7 @@ Color Scene::findColor(Intersection *in) {
         if (dynamic_cast<DirectionalLight*>(lights[i]) != 0) {
             DirectionalLight* light = dynamic_cast<DirectionalLight*>(lights[i]);
             vec3 direction = glm::normalize(light->position);
-            vec3 lightColor =vec3((int)light->color.r, (int)light->color.g, (int)light->color.b);
+            vec3 lightColor =vec3(light->color.r, light->color.g, light->color.b);
             vec3 halfvec = glm::normalize(eyedirn + direction);
             
             Color directionalColor = computePointLight(direction, lightColor, normal, halfvec, in->shape);
@@ -117,8 +117,6 @@ Color Scene::findColor(Intersection *in) {
             
         }
         
-        // clamp to (0,255) range
-        color.clamp();
     }
     
     return color;

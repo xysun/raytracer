@@ -1,20 +1,17 @@
 # comment
 
-size 200 200
+size 300 300
 
 camera 0 0 2 0 0 0 0 1 0 90
 
-diffuse 1 0.5 0.5
-specular 255 255 255
-shininess 100
+diffuse 1 0 0
+specular 0 0 0
+shininess 80
 sphere 0 0 -2 2
 
 
-#sphere 1 0 -1 2
-
-
 # light
-#ambient 10 10 10
+ambient 0.1 0.1 0.1
+directional 0 0 1 0.5 0.5 0.5
+point 4 0 4 0.5 0.5 0.5
 
-point -2 2 2 255 0 0
-directional 0 0 10 0 128 0

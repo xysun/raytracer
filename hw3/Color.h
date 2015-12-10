@@ -2,16 +2,16 @@
 
 class Color{
 public:
-    unsigned char r,g,b;
-    Color(int _r, int _g, int _b){
-        r = (unsigned char) _r;
-        g = (unsigned char) _g;
-        b = (unsigned char) _b;
+    float r,g,b;
+    Color(float _r, float _g, float _b){
+        r = _r;
+        g = _g;
+        b = _b;
     };
     
     void clamp(){
-        r = r > 255? 255:r;
-        g = g > 255? 255:g;
-        b = b > 255? 255:b;
+        r = r > 1? 1:r;
+        g = g > 1? 1:g;
+        b = b > 1? 1:b;
     }
 };
