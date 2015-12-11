@@ -44,7 +44,6 @@ int main(int argc, const char * argv[]) {
     float *thit = new float(INFINITY);
     Intersection *in = new Intersection();
     
-    // TODO: show progress
     while (sampler.getSample(sample)) {
         film.commit(*sample, black); // default black
         // generate ray
