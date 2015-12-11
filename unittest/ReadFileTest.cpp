@@ -75,5 +75,16 @@ TEST(ReadFileTest, ReadCorrectValues) {
     EXPECT_EQ(light3->color.g, 20);
     EXPECT_EQ(light3->color.b, 30);
     
+    // max vertices
+    EXPECT_EQ(scene->max_vertices, 2);
+    EXPECT_EQ(scene->vertices[0].x, 1);
+    EXPECT_EQ(scene->vertices[0].y, 2);
+    EXPECT_EQ(scene->vertices[0].z, 3);
+    EXPECT_EQ(scene->vertices[1].x, 4);
+    EXPECT_EQ(scene->vertices[1].y, 5);
+    EXPECT_EQ(scene->vertices[1].z, 6);
+    EXPECT_EQ(scene->current_vertex, 2);
+    
+    
 
 }

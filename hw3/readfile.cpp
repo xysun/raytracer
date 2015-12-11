@@ -37,11 +37,16 @@ void readfile(const char* filename, Scene *scene)
                 stringstream s(str);
                 s >> cmd;
                 
+                // initialize variables
+                
                 float values[10];
                 bool validinput;
                 float diffuse[3];
                 float shininess;
                 float specular[3];
+                int max_vertices;
+                vec3 *vertices;
+                
                 
                 if (cmd == "size") {
                     validinput = readvals(s,2,values);
@@ -119,6 +124,20 @@ void readfile(const char* filename, Scene *scene)
                         scene->num_lights += 1;
                     }else{
                         printf("max number of lights reached\n");
+                    }
+                }
+                else if (cmd == "maxverts"){
+                    validinput = readvals(s, 1, values);
+                    max_vertices = (int)values[0];
+                    scene->max_vertices = max_vertices;
+                }
+                else if (cmd == "vertex"){
+                    validinput = readvals(s, 3, values);
+                    if (scene->current_vertex >= scene->max_vertices){
+                        printf("max number of vertices reached\n");
+                    }else{
+                        scene->vertices[scene->current_vertex] = vec3(values[0], values[1], values[2]);
+                        scene->current_vertex += 1;
                     }
                 }
                 
