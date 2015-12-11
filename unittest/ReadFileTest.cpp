@@ -18,8 +18,8 @@ TEST(ReadFileTest, ReadCorrectValues) {
     EXPECT_EQ(scene->camera->lookAt, vec3(0,0,0));
     EXPECT_EQ(scene->camera->fovy, 90);
     
-    // shapes
-    EXPECT_EQ(scene->num_objects, 2);
+    // shapes: 2 spheres + 2 triangles
+    EXPECT_EQ(scene->num_objects, 4);
     
     // sphere1
     Sphere *sphere = dynamic_cast<Sphere*>(scene->shapes[0]);
@@ -59,32 +59,38 @@ TEST(ReadFileTest, ReadCorrectValues) {
     
     // point light
     PointLight *light2 = dynamic_cast<PointLight*>(scene->lights[1]);
-    EXPECT_EQ(light2->position.x, 0);
-    EXPECT_EQ(light2->position.y, 1);
-    EXPECT_EQ(light2->position.z, 2);
+    EXPECT_EQ(light2->position, vec3(0,1,2));
     EXPECT_EQ(light2->color.r, 10);
     EXPECT_EQ(light2->color.g, 20);
     EXPECT_EQ(light2->color.b, 30);
     
     // directional
     DirectionalLight *light3 = dynamic_cast<DirectionalLight*>(scene->lights[2]);
-    EXPECT_EQ(light3->position.x, 0);
-    EXPECT_EQ(light3->position.y, 1);
-    EXPECT_EQ(light3->position.z, 2);
+    EXPECT_EQ(light3->position, vec3(0,1,2));
     EXPECT_EQ(light3->color.r, 10);
     EXPECT_EQ(light3->color.g, 20);
     EXPECT_EQ(light3->color.b, 30);
     
-    // max vertices
-    EXPECT_EQ(scene->max_vertices, 2);
-    EXPECT_EQ(scene->vertices[0].x, 1);
-    EXPECT_EQ(scene->vertices[0].y, 2);
-    EXPECT_EQ(scene->vertices[0].z, 3);
-    EXPECT_EQ(scene->vertices[1].x, 4);
-    EXPECT_EQ(scene->vertices[1].y, 5);
-    EXPECT_EQ(scene->vertices[1].z, 6);
-    EXPECT_EQ(scene->current_vertex, 2);
+    // vertices
+    EXPECT_EQ(scene->max_vertices, 4);
+    EXPECT_EQ(scene->vertices[0], vec3(0,0,0));
+    EXPECT_EQ(scene->vertices[1], vec3(1,1,1));
+    EXPECT_EQ(scene->vertices[2], vec3(2,2,2));
+    EXPECT_EQ(scene->vertices[3], vec3(3,3,3));
+    EXPECT_EQ(scene->current_vertex, 4);
     
+    // triangles
+    // tri1: 0 1 2
+    Triangle *tri1 = dynamic_cast<Triangle*>(scene->shapes[2]);
+    EXPECT_EQ(tri1->vert1, scene->vertices[0]);
+    EXPECT_EQ(tri1->vert2, scene->vertices[1]);
+    EXPECT_EQ(tri1->vert3, scene->vertices[2]);
+    
+    // tri2: 0 2 3
+    Triangle *tri2 = dynamic_cast<Triangle*>(scene->shapes[3]);
+    EXPECT_EQ(tri2->vert1, scene->vertices[0]);
+    EXPECT_EQ(tri2->vert2, scene->vertices[2]);
+    EXPECT_EQ(tri2->vert3, scene->vertices[3]);
     
 
 }

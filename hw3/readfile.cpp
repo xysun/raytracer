@@ -96,7 +96,24 @@ void readfile(const char* filename, Scene *scene)
                         printf("max number of objects reached\n");
                     }
                     
-                }else if (cmd == "ambient"){
+                }
+                else if (cmd == "tri"){
+                    if (scene->num_objects >= max_objects){
+                        printf("max number of objects reached\n");
+                    }else{
+                        validinput = readvals(s, 3, values);
+                        scene->shapes[scene->num_objects] = new Triangle(scene->vertices[(int)values[0]],
+                                                                         scene->vertices[(int)values[1]],
+                                                                         scene->vertices[(int)values[2]]);
+                        // set material
+                        scene->shapes[scene->num_objects]->set_diffuse(diffuse);
+                        scene->shapes[scene->num_objects]->set_shininess(shininess);
+                        scene->shapes[scene->num_objects]->set_specular(specular);
+                        scene->num_objects += 1;
+                    }
+                }
+                
+                else if (cmd == "ambient"){
                     if (scene->num_lights < max_lights) {
                         validinput = readvals(s, 3, values);
                         scene->lights[scene->num_lights] = new AmbientLight(Color(values[0], values[1], values[2]));

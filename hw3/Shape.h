@@ -73,6 +73,26 @@ public:
     bool intersect(Ray &ray, float *thit, LocalGeo *local);
 };
 
+class Triangle:public Shape{
+public:
+    // counter clockwise
+    vec3 vert1 = vec3(0,0,0);
+    vec3 vert2 = vec3(0,0,0);
+    vec3 vert3 = vec3(0,0,0);
+    
+    Triangle(){};
+    
+    Triangle(vec3 _v1, vec3 _v2, vec3 _v3){
+        vert1 = _v1;
+        vert2 = _v2;
+        vert3 = _v3;
+    }
+    ~Triangle(){};
+    
+    bool intersectP(Ray &ray);
+    bool intersect(Ray &ray, float *thit, LocalGeo *local);
+};
+
 
 class Intersection{
 public:
