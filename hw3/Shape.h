@@ -74,6 +74,7 @@ public:
 };
 
 class Triangle:public Shape{
+    vec3 getNormal();
 public:
     // counter clockwise
     vec3 vert1 = vec3(0,0,0);
@@ -91,6 +92,9 @@ public:
     
     bool intersectP(Ray &ray);
     bool intersect(Ray &ray, float *thit, LocalGeo *local);
+    
+    // helper functions
+    void solveLinearEquation(vec3 left, vec3 right1, vec3 right2, float *x, float *y);
 };
 
 

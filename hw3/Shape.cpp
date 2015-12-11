@@ -84,12 +84,107 @@ bool Sphere::intersect(Ray &ray, float *thit, LocalGeo *local){
     }
 }
 
+vec3 Triangle::getNormal(){
+    // A B C clockwise; C = vert1, B = vert2, A = vert3
+    // n = (C-A)x(B-A)
+    return glm::cross(vert1 - vert3, vert2 - vert3);
+}
+
+
+void Triangle::solveLinearEquation(vec3 left, vec3 right1, vec3 right2, float *x, float *y){
+    /* 
+     left = x*right1 + y*right2
+     
+     left.x = x * right1.x + y * right2.x
+     left.y = x * right1.y + y * right2.y
+     left.z = x * right1.z + y * right2.z
+        
+     left.x * right1.y = x * right1.x * right1.y + y * right2.x * right1.y
+     left.y * right1.x = x * right1.x * right1.y + y * right1.x * right2.y
+     
+     left.x * right1.y - left.y * right1.x = y * (right2.x * right1.y - right1.x * right2.y)
+     x = (left.x - y * right2.x) / right1.x
+    */
+    
+    float _x, _y;
+    
+    if (right1.x == 0) {
+        _y = left.x / right2.x;
+        if (right1.y == 0) {
+            _x = (left.z - _y * right2.z) / right1.z;
+        }else{
+            _x = (left.y - right2.y * _y) / right1.y;
+        }
+        
+        *x = _x;
+        *y = _y;
+        return;
+    }
+    
+    if (right2.x == 0) {
+        _x = left.x / right1.x;
+        if (right2.y == 0) {
+            _y = (left.z - _x * right1.z) / right2.z;
+        }else{
+            _y = (left.y - _x * right1.y) / right2.y;
+        }
+        *x = _x;
+        *y = _y;
+        return;
+    }
+    
+    
+    _y = (left.x * right1.y - left.y * right1.x) / (right2.x * right1.y - right1.x * right2.y);
+    _x = (left.x - _y * right2.x) / right1.x;
+    
+    *x = _x;
+    *y = _y;
+    
+}
 
 
 bool Triangle::intersectP(Ray &ray){
-    return false;
+    
+    float *t = new float(0);
+    LocalGeo *local = new LocalGeo(Point(), Normal());
+    
+    bool res = intersect(ray, t, local);
+    
+    delete t;
+    delete local;
+    
+    return res;
 }
 
 bool Triangle::intersect(Ray &ray, float *thit, LocalGeo *local){
-    return false;
+    
+    // A B C clockwise: C = vert1, B = vert2, A = vert3
+    // t = (A dot n - Ray.pos dot n) / (Ray.dir dot n)
+    vec3 normal = getNormal();
+    float t = (glm::dot(vert3, normal) - glm::dot(ray.pos, normal)) / (glm::dot(ray.dir, normal));
+    vec3 rayP = ray.pos + t * ray.dir;
+    vec3 PminusA = rayP - vert3;
+    vec3 BminusA = vert2 - vert3;
+    vec3 CminusA = vert1 - vert3;
+    
+    // P - A = beta(B - A) + gamma(C - A)
+    // 0 <= beta <= 1; 0 <= gamma <= 1; beta + gamma <= 1
+    float *beta = new float(0);
+    float *gamma = new float(0);
+    solveLinearEquation(PminusA, BminusA, CminusA, beta, gamma);
+    
+    if (*beta >= 0 && *beta <= 1 && *gamma >= 0 && *gamma <= 1 && (*beta + *gamma) <= 1) {
+        
+        *thit = t;
+        *local = LocalGeo(Point(rayP), Normal(normal));
+        
+        delete beta;
+        delete gamma;
+        
+        return true;
+    }else{
+        delete beta;
+        delete gamma;
+        return false;
+    }
 }
