@@ -46,6 +46,7 @@ void readfile(const char* filename, Scene *scene)
                 float specular[3];
                 int max_vertices;
                 vec3 *vertices;
+                float ambient[3];
                 
                 
                 if (cmd == "size") {
@@ -91,6 +92,7 @@ void readfile(const char* filename, Scene *scene)
                         scene->shapes[scene->num_objects]->set_diffuse(diffuse);
                         scene->shapes[scene->num_objects]->set_shininess(shininess);
                         scene->shapes[scene->num_objects]->set_specular(specular);
+                        scene->shapes[scene->num_objects]->set_ambient(ambient);
                         scene->num_objects += 1;
                     }else{
                         printf("max number of objects reached\n");
@@ -109,6 +111,7 @@ void readfile(const char* filename, Scene *scene)
                         scene->shapes[scene->num_objects]->set_diffuse(diffuse);
                         scene->shapes[scene->num_objects]->set_shininess(shininess);
                         scene->shapes[scene->num_objects]->set_specular(specular);
+                        scene->shapes[scene->num_objects]->set_ambient(ambient);
                         scene->num_objects += 1;
                     }
                 }
@@ -116,6 +119,10 @@ void readfile(const char* filename, Scene *scene)
                 else if (cmd == "ambient"){
                     if (scene->num_lights < max_lights) {
                         validinput = readvals(s, 3, values);
+                        ambient[0] = values[0];
+                        ambient[1] = values[1];
+                        ambient[2] = values[2];
+                        
                         scene->lights[scene->num_lights] = new AmbientLight(Color(values[0], values[1], values[2]));
                         scene->num_lights += 1;
                     }else{

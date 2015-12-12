@@ -34,6 +34,10 @@ TEST(ReadFileTest, ReadCorrectValues) {
     for (int i = 0; i < 3; i++) {
         EXPECT_EQ(sphere->specular[i], specular1[i]);
     }
+    float ambient[3] = {10,20,30};
+    for (int i = 0; i < 3; i++) {
+        EXPECT_EQ(sphere->ambient[i], ambient[i]);
+    }
     
     // sphere2
     Sphere *sphere2 = dynamic_cast<Sphere*>(scene->shapes[1]);
@@ -47,6 +51,7 @@ TEST(ReadFileTest, ReadCorrectValues) {
     float specular2[3] = {2,2,2};
     for (int i = 0; i < 3; i++) {
         EXPECT_EQ(sphere2->specular[i], specular2[i]);
+        EXPECT_EQ(sphere2->ambient[i], ambient[i]);
     }
     
     // light
@@ -85,12 +90,18 @@ TEST(ReadFileTest, ReadCorrectValues) {
     EXPECT_EQ(tri1->vert1, scene->vertices[0]);
     EXPECT_EQ(tri1->vert2, scene->vertices[1]);
     EXPECT_EQ(tri1->vert3, scene->vertices[2]);
+    for (int i = 0; i < 3; i++) {
+        EXPECT_EQ(tri1->ambient[i], ambient[i]);
+    }
     
     // tri2: 0 2 3
     Triangle *tri2 = dynamic_cast<Triangle*>(scene->shapes[3]);
     EXPECT_EQ(tri2->vert1, scene->vertices[0]);
     EXPECT_EQ(tri2->vert2, scene->vertices[2]);
     EXPECT_EQ(tri2->vert3, scene->vertices[3]);
+    for (int i = 0; i < 3; i++) {
+        EXPECT_EQ(tri2->ambient[i], ambient[i]);
+    }
     
 
 }
