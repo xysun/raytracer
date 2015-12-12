@@ -74,12 +74,13 @@ public:
 };
 
 class Triangle:public Shape{
-    vec3 getNormal();
+    void setNormal();
 public:
     // counter clockwise
     vec3 vert1 = vec3(0,0,0);
     vec3 vert2 = vec3(0,0,0);
     vec3 vert3 = vec3(0,0,0);
+    vec3 normal = vec3(0,0,0);
     
     Triangle(){};
     
@@ -94,7 +95,7 @@ public:
     bool intersect(Ray &ray, float *thit, LocalGeo *local);
     
     // helper functions
-    void solveLinearEquation(vec3 left, vec3 right1, vec3 right2, float *x, float *y);
+    void baryCentric(vec3 p, float &alpha, float &beta, float &gamma);
 };
 
 
