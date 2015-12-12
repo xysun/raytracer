@@ -4,8 +4,8 @@
 void Camera::generateRay(Sample &sample, Ray *ray, Film &film){
     
     float beta = tanf(glm::radians(fovy) / 2) * (film.h/2 - sample.y) / (film.h/2);
-
-    float tan_fovx_2 = film.w / film.h * tanf(glm::radians(fovy) / 2);
+    
+    float tan_fovx_2 = (float) film.w / film.h * tanf(glm::radians(fovy) / 2);
     float alpha = tan_fovx_2 * (sample.x - film.w/2) / (film.w/2);
     
     vec3 dirn = vec3(

@@ -4,4 +4,6 @@ blog:
 * polymorphism
 
 TODO: 
-put shape pointer in LocalGeo
+* how to dynamic allocate array? 
+* change pointer to pass by reference.
+* generateRay test for image aspect ratio != 1
