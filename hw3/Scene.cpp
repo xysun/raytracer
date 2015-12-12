@@ -76,15 +76,13 @@ Color Scene::findColor(Intersection *in) {
     vec3 eyedirn = glm::normalize(eyepos - in->localGeo->point.p);
     vec3 normal = in->localGeo->normal.p;
     
+    // add ambient
+    color.r += in->shape->ambient[0];
+    color.g += in->shape->ambient[1];
+    color.b += in->shape->ambient[2];
+    
     
     for (int i = 0; i < num_lights; i++) {
-        
-        if (dynamic_cast<AmbientLight*>(lights[i]) != 0) {
-            AmbientLight* light = dynamic_cast<AmbientLight*>(lights[i]);
-            color.r += light->color.r;
-            color.g += light->color.g;
-            color.b += light->color.b;
-        }
         
         if (dynamic_cast<PointLight*>(lights[i]) != 0) {
             PointLight* light = dynamic_cast<PointLight*>(lights[i]);

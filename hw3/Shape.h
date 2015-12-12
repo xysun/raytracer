@@ -34,7 +34,7 @@ public:
     float diffuse[3] = {0,0,0};
     float shininess = 0;
     float specular[3] = {0,0,0};
-    float ambient[3] = {0,0,0};
+    float ambient[3] = {0.2,0.2,0.2};
     
     virtual bool intersectP(Ray &ray) = 0;
     virtual bool intersect(Ray &ray, float *thit, LocalGeo *local) = 0;

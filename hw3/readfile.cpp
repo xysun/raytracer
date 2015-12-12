@@ -117,17 +117,10 @@ void readfile(const char* filename, Scene *scene)
                 }
                 
                 else if (cmd == "ambient"){
-                    if (scene->num_lights < max_lights) {
-                        validinput = readvals(s, 3, values);
-                        ambient[0] = values[0];
-                        ambient[1] = values[1];
-                        ambient[2] = values[2];
-                        
-                        scene->lights[scene->num_lights] = new AmbientLight(Color(values[0], values[1], values[2]));
-                        scene->num_lights += 1;
-                    }else{
-                        printf("max number of lights reached\n");
-                    }
+                    validinput = readvals(s, 3, values);
+                    ambient[0] = values[0];
+                    ambient[1] = values[1];
+                    ambient[2] = values[2];
                 }else if (cmd == "point"){
                     if (scene->num_lights < max_lights) {
                         validinput = readvals(s, 6, values);
