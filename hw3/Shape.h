@@ -58,7 +58,7 @@ public:
 
 
 class Sphere:public Shape{
-    void get_quadratic_function(Ray &ray, float* a, float*b, float* c);
+    void getQuadraticFunction(Ray &ray, float &a, float &b, float &c);
 public:
     vec3 center;
     float radius;

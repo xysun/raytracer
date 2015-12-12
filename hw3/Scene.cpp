@@ -53,7 +53,7 @@ Color Scene::computePointLight(vec3 direction,
                         specular.y * lightColor.y * pn,
                         specular.z * lightColor.z * pn);
     
-    if (pn > 0.01) {
+    if (pn > 0.01 && (phong.r > 0 || phong.g > 0 || phong.b > 0)) {
         printf("normal: %.2f %.2f %.2f\n", normal.x, normal.y, normal.z);
         printf("halfvec: %.2f %.2f %.2f\n", halfvec.x, halfvec.y, halfvec.z);
         printf("nDotH: %.3f ", nDotH);

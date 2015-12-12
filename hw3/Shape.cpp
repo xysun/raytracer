@@ -7,28 +7,26 @@ Sphere::Sphere(vec3 _center, float _radius){
 }
 
 
-void Sphere::get_quadratic_function(Ray &ray, float *a, float *b, float *c){
+void Sphere::getQuadraticFunction(Ray &ray, float &a, float &b, float &c){
     vec3 p0 = ray.pos;
     vec3 p1 = ray.dir;
     
     // p1 * p1
-    *a = glm::dot(p1, p1);
+    a = glm::dot(p1, p1);
     // 2p1*(p0-c)
-    *b = 2 * (glm::dot(p1, p0 - center));
+    b = 2 * (glm::dot(p1, p0 - center));
     // (p0-c)*(p0-c)-r^2
-    *c = glm::dot(p0-center, p0-center) - radius * radius;
+    c = glm::dot(p0-center, p0-center) - radius * radius;
     
 }
 
 bool Sphere::intersectP(Ray &ray){
     
-    float * _a = new float(0);
-    float * _b = new float(0);
-    float * _c = new float(0);
+    float _a, _b, _c;
     
-    get_quadratic_function(ray, _a, _b, _c);
+    getQuadraticFunction(ray, _a, _b, _c);
     
-    float delta = (*_b) * (*_b) - 4*(*_a)*(*_c);
+    float delta = (_b) * (_b) - 4*(_a)*(_c);
     
     if (delta >=0 ) {
         return true;
@@ -39,15 +37,9 @@ bool Sphere::intersectP(Ray &ray){
 
 bool Sphere::intersect(Ray &ray, float *thit, LocalGeo *local){
     
-    float * _a = new float(0);
-    float * _b = new float(0);
-    float * _c = new float(0);
+    float a,b,c;
         
-    get_quadratic_function(ray, _a, _b, _c);
-        
-    float a = *_a;
-    float b = *_b;
-    float c = *_c;
+    getQuadraticFunction(ray, a, b, c);
         
     float delta = b*b - 4*a*c;
         
