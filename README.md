@@ -10,3 +10,4 @@ TODO:
 * transform
 * shadow
 * recursive ray tracing
+* translate sphere

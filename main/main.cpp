@@ -37,7 +37,6 @@ int main(int argc, const char * argv[]) {
     Film film = Film(scene->w,scene->h);
     
     Color black = Color(0, 0, 0);
-    Color red = Color(255, 0, 0);
     
     Ray *ray = new Ray(vec3(0,0,0), vec3(0,0,0), 0, 0, 100);
     

@@ -187,6 +187,11 @@ void readfile(const char* filename, Scene *scene)
                     }
                 }
                 
+                else if (cmd == "scale"){
+                    validinput = readvals(s, 3, values);
+                    rightmultiply(Transform::scale(values[0], values[1], values[2]), transfstack);
+                }
+                
                 else if (cmd == "pushTransform") {
                     transfstack.push(transfstack.top());
                 } else if (cmd == "popTransform") {

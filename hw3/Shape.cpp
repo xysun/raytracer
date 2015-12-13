@@ -9,15 +9,15 @@ Sphere::Sphere(vec3 _center, float _radius){
 
 
 void Sphere::getQuadraticFunction(Ray &ray, float &a, float &b, float &c){
-    vec4 p0 = ray.pos;
-    vec4 p1 = ray.dir;
+    vec3 p0 = vec3(ray.pos.x, ray.pos.y, ray.pos.z);
+    vec3 p1 = vec3(ray.dir.x, ray.dir.y, ray.dir.z);
     
     // p1 * p1
     a = glm::dot(p1, p1);
     // 2p1*(p0-c)
-    b = 2 * (glm::dot(p1, p0 - vec4(center,1)));
+    b = 2 * (glm::dot(p1, p0 - center));
     // (p0-c)*(p0-c)-r^2
-    c = glm::dot(p0-vec4(center,1), p0-vec4(center,1)) - radius * radius;
+    c = glm::dot(p0-center, p0-center) - radius * radius;
     
 }
 

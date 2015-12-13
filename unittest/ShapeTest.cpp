@@ -51,3 +51,38 @@ TEST(IntersectTest, IntersectValueTest){
     
 }
 
+TEST(SphereTest, NotInCentralTest){
+    Sphere sphere = Sphere(vec3(-2,0,0),1);
+    Ray ray = Ray(vec3(0,0,3), vec3(-4,0,-1), 0, 0, 100);
+    EXPECT_EQ(sphere.intersectP(ray), false);
+
+}
+
+TEST(SphereTest, TranslateIntersectTest){
+    Sphere sphere = Sphere(vec3(2.0001,0,0), 1);
+    sphere.set_transform(mat4(1,0,0,0,
+                              0,1,0,0,
+                              0,0,1,0,
+                              -1,0,0,1)); //center now at (1.1,0,0)
+    
+    Ray ray = Ray(vec3(0,0,2), vec3(0,0,-1), 0, 0, 100);
+    EXPECT_EQ(sphere.intersectP(ray), false);
+}
+
+TEST(SphereTest, TranslateIntersectNormalTest){
+    Sphere sphere = Sphere(vec3(2,0,0), 1);
+    sphere.set_transform(mat4(1,0,0,0,
+                              0,1,0,0,
+                              0,0,1,0,
+                              -1,0,0,1)); //center now at (1,0,0)
+    
+    Ray ray = Ray(vec3(0,0,2), vec3(0,0,-1), 0, 0, 100);
+    EXPECT_EQ(sphere.intersectP(ray), true);
+    
+    LocalGeo *local = new LocalGeo(Point(), Normal());
+    float *t = new float(0);
+    
+    sphere.intersect(ray, t, local);
+    EXPECT_EQ(local->normal.p, vec3(-1,0,0));
+}
+
