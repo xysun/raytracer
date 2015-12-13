@@ -121,7 +121,10 @@ Color Scene::findColor(Intersection *in) {
     color.g += in->shape->ambient[1];
     color.b += in->shape->ambient[2];
     
-
+    // add emission
+    color.r += in->shape->emission[0];
+    color.g += in->shape->emission[1];
+    color.b += in->shape->emission[2];
     
     
     for (int i = 0; i < num_lights; i++) {
