@@ -107,5 +107,11 @@ TEST(ReadFileTest, ReadCorrectValues) {
     // maxdepth
     EXPECT_EQ(scene->maxdepth, 5);
     
+    // attenuation
+    float attenuation[3] = {1,2,3};
+    for (int i = 0; i < 3; i++) {
+        EXPECT_EQ(scene->attenuation[i], attenuation[i]);
+    }
+    
 
 }

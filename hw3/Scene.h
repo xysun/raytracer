@@ -13,10 +13,10 @@ public:
     int num_lights = 0;
     // vertices
     int max_vertices = 0;
-    vec3 vertices[100000];
+    vec3 vertices[1000000];
     int current_vertex = 0;
     int maxdepth = 0;
-    
+    float attenuation[3] = {1,0,0};
     
     Shape** shapes;
     Light** lights;
@@ -30,6 +30,12 @@ public:
         shapes = new Shape*[max_objects];
         lights = new Light*[max_lights];
     };
+    
+    void set_attenuation(float _a[3]){
+        attenuation[0] = _a[0];
+        attenuation[1] = _a[1];
+        attenuation[2] = _a[2];
+    }
     
     bool intersect(Ray &ray, float *thit, Intersection *in);
     bool intersectP(Ray &ray, Shape *shape);

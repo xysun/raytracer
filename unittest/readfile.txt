@@ -8,6 +8,8 @@ camera 0 0 2 0 0 0 0 1 0 90
 
 ambient 10 20 30
 
+attenuation 1 2 3
+
 pushTransform
 translate 1 2 3
 

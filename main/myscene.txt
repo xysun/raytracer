@@ -2,9 +2,9 @@
 
 size 400 300
 
-camera 0 0 2 0 0 0 0 1 0 90
+camera 0 0 4 0 0 0 0 1 0 90
 
-ambient 1 0 0
+#ambient 1 0 0
 diffuse 1 0 0
 specular 1 1 1
 shininess 80
@@ -12,12 +12,6 @@ shininess 80
 maxverts 4
 
 pushTransform
-#translate -1 0 0
-scale 1 2 1
-rotate 0 1 0 180
-vertex 1 0 0
-vertex 0 1 0
-vertex 0 0 0
-
-tri 0 1 2
+translate -1 0 0
+sphere 0 0 0 1
 popTransform

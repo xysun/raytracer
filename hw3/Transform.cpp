@@ -21,8 +21,8 @@ mat4 Transform::scale(const float &sx, const float &sy, const float &sz)
 
 mat3 Transform::rotate(const float degrees, const vec3& axis)
 {
-    
-    double theta = glm::radians(degrees);
+    float actualDegrees = -1 * degrees;
+    double theta = glm::radians(actualDegrees);
     
     vec3 v = glm::normalize(axis);
     

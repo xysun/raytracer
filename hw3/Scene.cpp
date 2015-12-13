@@ -31,13 +31,28 @@ bool Scene::intersect(Ray &ray, float *thit, Intersection *in){
 
 bool Scene::intersectP(Ray &ray, Shape *shape){
     
+    // set min t
+    float threshold = 0.0001;
+    // t also needs to be less than shape to light
+    float *t = new float(0);
+    LocalGeo *local = new LocalGeo(Point(), Normal());
+    
     for (int i = 0; i < num_objects; i++) {
+        *t = 0;
+        *local = LocalGeo(Point(), Normal());
         if (shapes[i] != shape) {
-            if (shapes[i]->intersectP(ray)) {
-                return true;
+            if (shapes[i]->intersect(ray, t, local)) {
+                if ((*t) >= threshold && (*t) < 1) {
+                    delete t;
+                    delete local;
+                    return true;
+                }
             }
         }
     }
+    delete t;
+    delete local;
+    
     return false;
 }
 
@@ -62,6 +77,10 @@ Color Scene::computePointLight(vec3 direction,
                           diffuse.y * lightColor.y * m,
                           diffuse.z * lightColor.z * m);
     
+    /*if (m > 0.01) {
+        printf("lambert: %.2f, %.2f, %.2f\n", lambert.r, lambert.g, lambert.b);
+    }*/
+    
     // phong: myspecular * lightcolor * pow (max(nDotH, 0.0), myshininess)
     float nDotH = glm::dot(normal, halfvec);
     float n = nDotH > 0? nDotH : 0;
@@ -71,13 +90,13 @@ Color Scene::computePointLight(vec3 direction,
                         specular.y * lightColor.y * pn,
                         specular.z * lightColor.z * pn);
     
-    if (pn > 0.01 && (phong.r > 0 || phong.g > 0 || phong.b > 0)) {
+    /*if (pn > 0.01 && (phong.r > 0 || phong.g > 0 || phong.b > 0)) {
         printf("normal: %.2f %.2f %.2f\n", normal.x, normal.y, normal.z);
         printf("halfvec: %.2f %.2f %.2f\n", halfvec.x, halfvec.y, halfvec.z);
         printf("nDotH: %.3f ", nDotH);
         printf("pn: %.3f ", pn);
         printf("phong: %.2f %.2f %.2f\n", phong.r, phong.g, phong.b);
-    }
+    }*/
     
     return Color(lambert.r + phong.r,
                  lambert.g + phong.g,
@@ -92,13 +111,26 @@ void Scene::rayTrace(Ray &ray, int depth, Color *color) {
         *color = Color(0,0,0);
         return;
     }
+    
     float *thit = new float(INFINITY);
     Intersection *in = new Intersection();
     if (intersect(ray, thit, in)) {
         *color = findColor(in);
+        // recurse
+        Ray reflectedRay = createReflectedRay(*(in->localGeo), ray);
+        Color *tempColor = new Color(0,0,0);
+        rayTrace(reflectedRay, depth+1, tempColor);
+        (*color).r += (*tempColor).r;
+        (*color).g += (*tempColor).g;
+        (*color).b += (*tempColor).b;
+        
+        delete tempColor;
     }else{
         *color = Color(0, 0, 0);
     }
+    
+    delete thit;
+    delete in;
     
 }
 
@@ -131,21 +163,25 @@ Color Scene::findColor(Intersection *in) {
         
         if (dynamic_cast<PointLight*>(lights[i]) != 0) {
             PointLight* light = dynamic_cast<PointLight*>(lights[i]);
-            // transform light position
-            vec4 _lightposn = in->shape->transform * vec4(light->position,1);
-            vec3 lightposn = vec3(_lightposn.x / _lightposn.w,
-                                  _lightposn.y / _lightposn.w,
-                                  _lightposn.z / _lightposn.w);
+            vec3 lightposn = light->position;
             
             vec3 direction = glm::normalize(lightposn - mypos);
             
             vec3 lightColor = vec3(light->color.r, light->color.g, light->color.b);
             vec3 halfvec = glm::normalize(eyedirn + direction);
             
+            float distance = glm::distance(lightposn, mypos);
+            float attenFactor = 1.0f / (attenuation[0] + distance * attenuation[1] + distance * distance * attenuation[2]);
+            
             // shadows
-            Ray shadowRay = Ray(mypos, lightposn, 0, 0, 100);
+            Ray shadowRay = Ray(mypos, lightposn-mypos, 0, 0, 100);
+            bool shadow = intersectP(shadowRay, in->shape);
+            /*if (shadow) {
+                lightColor;
+            }*/
+            
             if (!intersectP(shadowRay, in->shape)) {
-                
+            //if (true){
                 Color pointColor = computePointLight(direction,
                                                lightColor,
                                                normal,
@@ -153,35 +189,33 @@ Color Scene::findColor(Intersection *in) {
                                                in->shape);
         
             
-                color.r += pointColor.r;
-                color.g += pointColor.g;
-                color.b += pointColor.b;
+                color.r += attenFactor * pointColor.r;
+                color.g += attenFactor * pointColor.g;
+                color.b += attenFactor * pointColor.b;
             }
         }
         
         if (dynamic_cast<DirectionalLight*>(lights[i]) != 0) {
             DirectionalLight* light = dynamic_cast<DirectionalLight*>(lights[i]);
-
-            // transform light position
-            vec4 _lightposn = in->shape->transform * vec4(light->position,1);
-            vec3 lightposn = vec3(_lightposn.x / _lightposn.w,
-                                  _lightposn.y / _lightposn.w,
-                                  _lightposn.z / _lightposn.w);
             
+            vec3 lightposn = light->position;
             
             vec3 direction = glm::normalize(lightposn);
             vec3 lightColor =vec3(light->color.r, light->color.g, light->color.b);
             vec3 halfvec = glm::normalize(eyedirn + direction);
             
+            float distance = glm::distance(lightposn, mypos);
+            float attenFactor = 1.0f / (attenuation[0] + distance * attenuation[1] + distance * distance * attenuation[2]);
+            
             // shadows
-            Ray shadowRay = Ray(mypos, lightposn, 0, 0, 100);
+            Ray shadowRay = Ray(mypos, lightposn-mypos, 0, 0, 100);
             
             if (!intersectP(shadowRay, in->shape)) {
                 Color directionalColor = computePointLight(direction, lightColor, normal, halfvec, in->shape);
                 
-                color.r += directionalColor.r;
-                color.g += directionalColor.g;
-                color.b += directionalColor.b;
+                color.r += attenFactor * directionalColor.r;
+                color.g += attenFactor * directionalColor.g;
+                color.b += attenFactor * directionalColor.b;
             }
         }
         

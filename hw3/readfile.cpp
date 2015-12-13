@@ -231,6 +231,17 @@ void readfile(const char* filename, Scene *scene)
                         transfstack.pop();
                     }
                 }
+                
+                else if (cmd == "attenuation"){
+                    validinput = readvals(s, 3, values);
+                    float _a[3] = {1,0,0};
+                    _a[0] = values[0];
+                    _a[1] = values[1];
+                    _a[2] = values[2];
+                    
+                    scene->set_attenuation(_a);
+
+                }
 
             }
             getline (in, str);
