@@ -42,7 +42,7 @@ bool Scene::intersectP(Ray &ray, Shape *shape){
 }
 
 Ray Scene::createReflectedRay(LocalGeo local, Ray ray){
-    return ray;
+    return Ray(local.point.p, glm::normalize(ray.dir + 2 * vec4(local.normal.p,0)), ray.t, ray.t_min, ray.t_max);
 }
 
 Color Scene::computePointLight(vec3 direction,

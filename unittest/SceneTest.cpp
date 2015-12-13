@@ -68,3 +68,13 @@ TEST(SceneTest, ShadowTest){
     EXPECT_EQ(scene->intersectP(shadowRay3, scene->shapes[0]), false);
     
 }
+
+TEST(SceneTest, ReflectedRayTest){
+    
+    LocalGeo local = LocalGeo(Point(vec4(0,0,0,1)), Normal(vec3(0,1,0)));
+    Ray ray1 = Ray(vec3(-1,1,0), vec3(0,0,0) - vec3(-1,1,0), 0, 0, 100);
+    
+    Ray reflectedRay = Scene::createReflectedRay(local, ray1);
+    EXPECT_EQ(reflectedRay.pos, vec4(0,0,0,1));
+    EXPECT_EQ(reflectedRay.dir, glm::normalize(vec4(1,1,0,0)));
+}
