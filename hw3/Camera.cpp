@@ -1,5 +1,7 @@
+#pragma once
 #include "Camera.h"
 #include "Film.h"
+#include "variables.h"
 
 void Camera::generateRay(Sample &sample, Ray *ray, Film &film){
     
@@ -13,7 +15,7 @@ void Camera::generateRay(Sample &sample, Ray *ray, Film &film){
                      alpha * u.y + beta * v.y - w.y,
                      alpha * u.z + beta * v.z - w.z);
     
-    *ray = Ray(lookFrom, glm::normalize(dirn), ray->t, ray->t_min, ray->t_max);
+    *ray = Ray(vec4(lookFrom,1), glm::normalize(vec4(dirn,0)), ray->t, ray->t_min, ray->t_max);
     
 }
 

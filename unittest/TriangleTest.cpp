@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "Shape.h"
+#include "variables.h"
 
 
 TEST(TriangleTest, BaryCentricTest) {
@@ -13,7 +14,7 @@ TEST(TriangleTest, BaryCentricTest) {
     tri.vert2 = vec3(0,0,1);
     tri.vert3 = vec3(0,1,0);
     
-    tri.baryCentric(vec3(1,1,1),  x, y, z);
+    tri.baryCentric(vec4(1,1,1,1),  x, y, z);
     
     EXPECT_FLOAT_EQ(x, 1.0f/3);
     EXPECT_FLOAT_EQ(y, 1.0f/3);
@@ -28,7 +29,7 @@ TEST(TriangleTest, IntersectTest){
     tri.vert2 = vec3(0,1,0);
     tri.vert3 = vec3(0,0,0);
     
-    Ray ray = Ray(vec3(0,0,2), vec3(0,0,-1), 0, 0, 100);
+    Ray ray = Ray(vec4(0,0,2,1), vec4(0,0,-1,0), 0, 0, 100);
     EXPECT_EQ(tri.intersectP(ray), true);
     // t = 2
     float *t = new float(0);
@@ -37,9 +38,9 @@ TEST(TriangleTest, IntersectTest){
     tri.intersect(ray, t, local);
     
     EXPECT_EQ(*t, 2);
-    EXPECT_EQ(local->point.p, vec3(0,0,0));
+    EXPECT_EQ(local->point.p, vec4(0,0,0,1));
     
     
-    Ray ray2 = Ray(vec3(0,-1,2), vec3(0,0,-1), 0, 0, 100);
+    Ray ray2 = Ray(vec4(0,-1,2,1), vec4(0,0,-1,0), 0, 0, 100);
     EXPECT_EQ(tri.intersectP(ray2), false);
 }

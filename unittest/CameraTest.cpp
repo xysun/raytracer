@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "Camera.h"
 #include "Ray.h"
+#include "variables.h"
 
 TEST(CameraTest, PassValuesToVec3) {
     Camera c = Camera(vec3(0, 0, 2), vec3(0, 0, 0), vec3(0, 1, 0), 90);
@@ -20,7 +21,7 @@ TEST(CameraTest, GenerateRay){
     Film film = Film(2, 2);
     Sample sample = Sample(0, 0);
     
-    Ray *ray = new Ray(vec3(0,0,0), vec3(0,0,0), 0, 0, 100);
+    Ray *ray = new Ray(vec4(0,0,0,1), vec4(0,0,0,0), 0, 0, 100);
     
     c.generateRay(sample, ray, film);
     

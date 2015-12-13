@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "Scene.h"
 #include "readfile.h"
+#include "variables.h"
 
 
 TEST(SceneTest, NoIntersectTest) {
@@ -8,7 +9,7 @@ TEST(SceneTest, NoIntersectTest) {
     
     readfile("/Users/jsun/code/ucsd/hw3/unittest/SceneTest1.txt", scene);
     
-    Ray ray = Ray(vec3(0,0,2), vec3(0,0,-1), 0, 0, 100);
+    Ray ray = Ray(vec4(0,0,2,1), vec4(0,0,-1,0), 0, 0, 100);
     
     float *thit = new float(INFINITY);
     Intersection *in = new Intersection();
@@ -25,7 +26,7 @@ TEST(SceneTest, ClosestIntersectTest){
     
     readfile("/Users/jsun/code/ucsd/hw3/unittest/SceneTest2.txt", scene);
     
-    Ray ray = Ray(vec3(0,0,2), vec3(0,0,-1), 0, 0, 100);
+    Ray ray = Ray(vec4(0,0,2,1), vec4(0,0,-1,0), 0, 0, 100);
     
     float *thit = new float(INFINITY);
     Intersection *in = new Intersection();

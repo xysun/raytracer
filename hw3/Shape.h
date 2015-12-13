@@ -5,8 +5,8 @@
 
 class Point{
 public:
-    vec3 p = vec3(0,0,0);
-    Point(vec3 _p)
+    vec4 p = vec4(0,0,0,1);
+    Point(vec4 _p)
     {p = _p;};
     Point(){};
 };
@@ -111,7 +111,7 @@ public:
     bool intersect(Ray &ray, float *thit, LocalGeo *local);
     
     // helper functions
-    void baryCentric(vec3 p, float &alpha, float &beta, float &gamma);
+    void baryCentric(vec4 p, float &alpha, float &beta, float &gamma);
 };
 
 

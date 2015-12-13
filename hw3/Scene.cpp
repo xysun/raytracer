@@ -1,9 +1,11 @@
+#pragma once
 #include "Scene.h"
+#include "variables.h"
 
 bool Scene::intersect(Ray &ray, float *thit, Intersection *in){
     // go through every object in scene, return closest
     float _thit = INFINITY;
-    LocalGeo _local = LocalGeo(Point(vec3(0,0,0)), Normal(vec3(0,0,0)));
+    LocalGeo _local = LocalGeo(Point(vec4(0,0,0,1)), Normal(vec3(0,0,0)));
     Shape *_shape = new Sphere();
     
     bool hit = false;
@@ -73,8 +75,14 @@ Color Scene::findColor(Intersection *in) {
     Color color = Color(0, 0, 0);
     
     vec3 eyepos = vec3(0,0,0);
-    vec3 eyedirn = glm::normalize(eyepos - in->localGeo->point.p);
-    vec3 normal = in->localGeo->normal.p;
+    vec4 _mypos = in->shape->transform * in->localGeo->point.p;
+    vec3 mypos = vec3(_mypos.x / _mypos.w, _mypos.y / _mypos.w, _mypos.z / _mypos.w);
+    vec3 eyedirn = glm::normalize(eyepos - mypos);
+    // normal: M_-t
+    vec4 _normal = glm::transpose(glm::inverse(in->shape->transform)) * vec4(in->localGeo->normal.p,0);
+    vec3 normal = glm::normalize(vec3(_normal.x,
+                                      _normal.y,
+                                      _normal.z));
     
     // add ambient
     color.r += in->shape->ambient[0];
@@ -86,7 +94,14 @@ Color Scene::findColor(Intersection *in) {
         
         if (dynamic_cast<PointLight*>(lights[i]) != 0) {
             PointLight* light = dynamic_cast<PointLight*>(lights[i]);
-            vec3 direction = glm::normalize(light->position - in->localGeo->point.p);
+            // transform light position
+            vec4 _lightposn = in->shape->transform * vec4(light->position,1);
+            vec3 lightposn = vec3(_lightposn.x / _lightposn.w,
+                                  _lightposn.y / _lightposn.w,
+                                  _lightposn.z / _lightposn.w);
+            
+            vec3 direction = glm::normalize(lightposn - mypos);
+            
             vec3 lightColor = vec3(light->color.r, light->color.g, light->color.b);
             vec3 halfvec = glm::normalize(eyedirn + direction);
             
@@ -103,7 +118,15 @@ Color Scene::findColor(Intersection *in) {
         
         if (dynamic_cast<DirectionalLight*>(lights[i]) != 0) {
             DirectionalLight* light = dynamic_cast<DirectionalLight*>(lights[i]);
-            vec3 direction = glm::normalize(light->position);
+
+            // transform light position
+            vec4 _lightposn = in->shape->transform * vec4(light->position,1);
+            vec3 lightposn = vec3(_lightposn.x / _lightposn.w,
+                                  _lightposn.y / _lightposn.w,
+                                  _lightposn.z / _lightposn.w);
+            
+            
+            vec3 direction = glm::normalize(lightposn);
             vec3 lightColor =vec3(light->color.r, light->color.g, light->color.b);
             vec3 halfvec = glm::normalize(eyedirn + direction);
             
