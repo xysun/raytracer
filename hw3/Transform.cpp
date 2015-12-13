@@ -19,6 +19,34 @@ mat4 Transform::scale(const float &sx, const float &sy, const float &sz)
     
 }
 
+mat3 Transform::rotate(const float degrees, const vec3& axis)
+{
+    
+    double theta = glm::radians(degrees);
+    
+    vec3 v = glm::normalize(axis);
+    
+    mat3 v_vt = mat3(
+                     v.x * v.x, v.x * v.y, v.x * v.z,
+                     v.x * v.y, v.y * v.y, v.y * v.z,
+                     v.x * v.z, v.y * v.z, v.z * v.z
+                     );
+    
+    mat3 m1 = v_vt * (1 - cos(theta));
+    
+    mat3 identity(1.0);
+    
+    mat3 m2 = identity * cos(theta);
+    
+    mat3 dual_matrix = glm::mat3(0, v.z, -v.y,
+                                 -v.z, 0, v.x,
+                                 v.y, -v.x,0);
+    
+    return m1 + m2 + dual_matrix * sin(theta);
+    
+}
+
+
 
 
 Transform::Transform()

@@ -192,6 +192,22 @@ void readfile(const char* filename, Scene *scene)
                     rightmultiply(Transform::scale(values[0], values[1], values[2]), transfstack);
                 }
                 
+                else if (cmd == "rotate") {
+                    validinput = readvals(s,4,values);
+                    if (validinput) {
+                        
+                        mat3 r = Transform::rotate(values[3], vec3(values[0], values[1], values[2]));
+                        
+                        mat4 rotate_m4 = mat4(r[0][0],r[1][0],r[2][0],0,
+                                              r[0][1],r[1][1],r[2][1],0,
+                                              r[0][2],r[1][2],r[2][2],0,
+                                              0,0,0,1);
+                        
+                        rightmultiply(rotate_m4, transfstack);
+                        
+                    }
+                }
+
                 else if (cmd == "pushTransform") {
                     transfstack.push(transfstack.top());
                 } else if (cmd == "popTransform") {
