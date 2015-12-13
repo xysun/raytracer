@@ -23,21 +23,15 @@ void Sphere::getQuadraticFunction(Ray &ray, float &a, float &b, float &c){
 
 bool Sphere::intersectP(Ray &ray){
     
-    // apply M-1 to ray
-    mat4 invTransform = glm::inverse(transform);
-    Ray rayTransformed = Ray(invTransform * ray.pos, invTransform*ray.dir, ray.t, ray.t_min, ray.t_max);
+    float *t = new float(0);
+    LocalGeo *local = new LocalGeo(Point(),Normal());
     
-    float _a, _b, _c;
+    bool res = Sphere::intersect(ray, t, local);
     
-    getQuadraticFunction(rayTransformed, _a, _b, _c);
+    delete t;
+    delete local;
     
-    float delta = (_b) * (_b) - 4*(_a)*(_c);
-    
-    if (delta >=0 ) {
-        return true;
-    }else{
-        return false;
-    }
+    return res;
 }
 
 bool Sphere::intersect(Ray &ray, float *thit, LocalGeo *local){
@@ -152,7 +146,13 @@ bool Triangle::intersect(Ray &ray, float *thit, LocalGeo *local){
         *thit = t;
         *local = LocalGeo(Point(rayP), Normal(normal));
         
-        return true;
+        // thit must > 0
+        if (t > 0) {
+            return true;
+        }else{
+            return false;
+        }
+        
     }else{
         return false;
     }

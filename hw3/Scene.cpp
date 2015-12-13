@@ -29,6 +29,18 @@ bool Scene::intersect(Ray &ray, float *thit, Intersection *in){
     
 }
 
+bool Scene::intersectP(Ray &ray, Shape *shape){
+    
+    for (int i = 0; i < num_objects; i++) {
+        if (shapes[i] != shape) {
+            if (shapes[i]->intersectP(ray)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 Color Scene::computePointLight(vec3 direction,
                                vec3 lightColor,
                                vec3 normal,
@@ -105,15 +117,21 @@ Color Scene::findColor(Intersection *in) {
             vec3 lightColor = vec3(light->color.r, light->color.g, light->color.b);
             vec3 halfvec = glm::normalize(eyedirn + direction);
             
-            Color pointColor = computePointLight(direction,
+            // shadows
+            Ray shadowRay = Ray(mypos, lightposn, 0, 0, 100);
+            if (!intersectP(shadowRay, in->shape)) {
+                
+                Color pointColor = computePointLight(direction,
                                                lightColor,
                                                normal,
                                                halfvec,
                                                in->shape);
+        
             
-            color.r += pointColor.r;
-            color.g += pointColor.g;
-            color.b += pointColor.b;
+                color.r += pointColor.r;
+                color.g += pointColor.g;
+                color.b += pointColor.b;
+            }
         }
         
         if (dynamic_cast<DirectionalLight*>(lights[i]) != 0) {
@@ -130,12 +148,16 @@ Color Scene::findColor(Intersection *in) {
             vec3 lightColor =vec3(light->color.r, light->color.g, light->color.b);
             vec3 halfvec = glm::normalize(eyedirn + direction);
             
-            Color directionalColor = computePointLight(direction, lightColor, normal, halfvec, in->shape);
+            // shadows
+            Ray shadowRay = Ray(mypos, lightposn, 0, 0, 100);
             
-            color.r += directionalColor.r;
-            color.g += directionalColor.g;
-            color.b += directionalColor.b;
-            
+            if (!intersectP(shadowRay, in->shape)) {
+                Color directionalColor = computePointLight(direction, lightColor, normal, halfvec, in->shape);
+                
+                color.r += directionalColor.r;
+                color.g += directionalColor.g;
+                color.b += directionalColor.b;
+            }
         }
         
     }

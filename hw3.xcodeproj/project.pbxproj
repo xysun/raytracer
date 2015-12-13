@@ -131,6 +131,7 @@
 		9DD8F49A1C0D320E00374628 /* SceneTest2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SceneTest2.txt; sourceTree = "<group>"; };
 		9DEBB5F21C1B0E430086C3AD /* TriangleTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriangleTest.cpp; sourceTree = "<group>"; };
 		9DEBB5F41C1C75300086C3AD /* myscene.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myscene.txt; sourceTree = "<group>"; };
+		9DEBB5F51C1D912C0086C3AD /* SceneTest3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SceneTest3.txt; sourceTree = "<group>"; };
 		9DF2352F1C029D34006A1909 /* readfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = readfile.cpp; sourceTree = "<group>"; };
 		9DF235311C029D68006A1909 /* readfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = readfile.h; sourceTree = "<group>"; };
 		9DF235351C02A023006A1909 /* readfile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readfile.txt; sourceTree = "<group>"; };
@@ -255,6 +256,7 @@
 				9DD8F4991C0D314600374628 /* SceneTest1.txt */,
 				9DD8F49A1C0D320E00374628 /* SceneTest2.txt */,
 				9DEBB5F21C1B0E430086C3AD /* TriangleTest.cpp */,
+				9DEBB5F51C1D912C0086C3AD /* SceneTest3.txt */,
 			);
 			path = unittest;
 			sourceTree = "<group>";

@@ -1,0 +1,11 @@
+
+#ignore comment and blank line
+
+size 100 100
+
+camera 0 0 2 0 0 0 0 1 0 90
+
+sphere 0 0 0 0.8
+sphere 4 0 0 1
+
+point -4 0 0 1 0 0

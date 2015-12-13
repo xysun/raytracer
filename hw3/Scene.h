@@ -31,6 +31,7 @@ public:
     };
     
     bool intersect(Ray &ray, float *thit, Intersection *in);
+    bool intersectP(Ray &ray, Shape *shape);
     
     Color findColor(Intersection *in);
     
