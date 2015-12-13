@@ -102,5 +102,8 @@ TEST(ReadFileTest, ReadCorrectValues) {
         EXPECT_EQ(tri2->ambient[i], ambient[i]);
     }
     
+    // maxdepth
+    EXPECT_EQ(scene->maxdepth, 5);
+    
 
 }

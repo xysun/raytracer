@@ -207,6 +207,11 @@ void readfile(const char* filename, Scene *scene)
                         
                     }
                 }
+                
+                else if (cmd == "maxdepth"){
+                    validinput = readvals(s,1, values);
+                    scene->maxdepth = (int)(values[0]);
+                }
 
                 else if (cmd == "pushTransform") {
                     transfstack.push(transfstack.top());

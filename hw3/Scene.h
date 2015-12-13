@@ -15,6 +15,7 @@ public:
     int max_vertices = 0;
     vec3 vertices[100000];
     int current_vertex = 0;
+    int maxdepth = 0;
     
     
     Shape** shapes;
@@ -34,6 +35,8 @@ public:
     bool intersectP(Ray &ray, Shape *shape);
     
     Color findColor(Intersection *in);
+    
+    void rayTrace(Ray &ray, int depth, Color *color);
     
     Color computePointLight(vec3 direction,
                             vec3 lightColor,

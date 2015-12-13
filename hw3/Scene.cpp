@@ -82,6 +82,22 @@ Color Scene::computePointLight(vec3 direction,
     
 }
 
+void Scene::rayTrace(Ray &ray, int depth, Color *color) {
+    
+    if (depth > maxdepth) {
+        *color = Color(0,0,0);
+        return;
+    }
+    float *thit = new float(INFINITY);
+    Intersection *in = new Intersection();
+    if (intersect(ray, thit, in)) {
+        *color = findColor(in);
+    }else{
+        *color = Color(0, 0, 0);
+    }
+    
+}
+
 Color Scene::findColor(Intersection *in) {
     
     Color color = Color(0, 0, 0);

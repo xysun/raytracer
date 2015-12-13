@@ -37,21 +37,19 @@ int main(int argc, const char * argv[]) {
     Film film = Film(scene->w,scene->h);
     
     Color black = Color(0, 0, 0);
+    Color *color = new Color(0,0,0);
     
     Ray *ray = new Ray(vec3(0,0,0), vec3(0,0,0), 0, 0, 100);
     
-    float *thit = new float(INFINITY);
-    Intersection *in = new Intersection();
     
     while (sampler.getSample(sample)) {
         film.commit(*sample, black); // default black
         // generate ray
         scene->camera->generateRay(*sample, ray, film);
         
-        if (scene->intersect(*ray, thit, in)) {
-            Color color = scene->findColor(in);
-            film.commit(*sample, color);
-        }
+        scene->rayTrace(*ray, 0,color);
+        film.commit(*sample, *color);
+        
     }
     
     film.writeImage();
@@ -59,8 +57,7 @@ int main(int argc, const char * argv[]) {
     // release dynamically allocated memory
     delete sample;
     delete ray;
-    delete thit;
-    delete in;
+    delete color;
     
     for (int i = 0; i < scene->num_objects; i++) {
         delete scene->shapes[i];

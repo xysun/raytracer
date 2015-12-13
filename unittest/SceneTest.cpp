@@ -56,12 +56,12 @@ TEST(SceneTest, ShadowTest){
     readfile("/Users/jsun/code/ucsd/hw3/unittest/SceneTest3.txt", scene);
 
     // ray1: myposn = (2,0,0), shadow
-    //Ray shadowRay1 = Ray(vec3(2,0,0), vec3(-4,0,0) - vec3(2,0,0), 1, 1, 100);
-    //EXPECT_EQ(scene->intersectP(shadowRay1, scene->shapes[1]), true);
+    Ray shadowRay1 = Ray(vec3(2,0,0), vec3(-4,0,0) - vec3(2,0,0), 1, 1, 100);
+    EXPECT_EQ(scene->intersectP(shadowRay1, scene->shapes[1]), true);
     
     // ray2: myposn = (4,2,0), no shadow
-    //Ray shadowRay2 = Ray(vec3(4,2,0), vec3(-4,0,0) - vec3(4,2,0), 1, 1, 100);
-    //EXPECT_EQ(scene->intersectP(shadowRay2, scene->shapes[1]), false);
+    Ray shadowRay2 = Ray(vec3(4,2,0), vec3(-4,0,0) - vec3(4,2,0), 1, 1, 100);
+    EXPECT_EQ(scene->intersectP(shadowRay2, scene->shapes[1]), false);
     
     // first sphere should never be in shadow
     Ray shadowRay3 = Ray(vec3(-1,0,0), vec3(-4,0,0) - vec3(-1,0,0),0,0,100);
