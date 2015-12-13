@@ -38,6 +38,8 @@ public:
     
     void rayTrace(Ray &ray, int depth, Color *color);
     
+    Ray createReflectedRay(LocalGeo local, Ray ray);
+    
     Color computePointLight(vec3 direction,
                             vec3 lightColor,
                             vec3 normal,

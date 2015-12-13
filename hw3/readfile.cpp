@@ -57,8 +57,8 @@ void readfile(const char* filename, Scene *scene)
                 float shininess;
                 float specular[3];
                 int max_vertices;
-                vec3 *vertices;
                 float ambient[3];
+                float emission[3];
                 
                 
                 if (cmd == "size") {
@@ -96,6 +96,13 @@ void readfile(const char* filename, Scene *scene)
                     specular[1] = values[1];
                     specular[2] = values[2];
                 }
+                else if (cmd == "emission"){
+                    validinput = readvals(s, 3, values);
+                    emission[0] = values[0];
+                    emission[1] = values[1];
+                    emission[2] = values[2];
+                    
+                }
                 else if (cmd == "sphere"){
                     if (scene->num_objects < max_objects){
                         validinput = readvals(s, 4, values);
@@ -105,6 +112,7 @@ void readfile(const char* filename, Scene *scene)
                         scene->shapes[scene->num_objects]->set_shininess(shininess);
                         scene->shapes[scene->num_objects]->set_specular(specular);
                         scene->shapes[scene->num_objects]->set_ambient(ambient);
+                        scene->shapes[scene->num_objects]->set_emission(emission);
                         // set transform
                         scene->shapes[scene->num_objects]->set_transform(transfstack.top());
                         scene->num_objects += 1;
@@ -126,6 +134,7 @@ void readfile(const char* filename, Scene *scene)
                         scene->shapes[scene->num_objects]->set_shininess(shininess);
                         scene->shapes[scene->num_objects]->set_specular(specular);
                         scene->shapes[scene->num_objects]->set_ambient(ambient);
+                        scene->shapes[scene->num_objects]->set_emission(emission);
                         // set transform
                         scene->shapes[scene->num_objects]->set_transform(transfstack.top());
                         scene->num_objects += 1;

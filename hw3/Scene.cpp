@@ -41,6 +41,10 @@ bool Scene::intersectP(Ray &ray, Shape *shape){
     return false;
 }
 
+Ray Scene::createReflectedRay(LocalGeo local, Ray ray){
+    return ray;
+}
+
 Color Scene::computePointLight(vec3 direction,
                                vec3 lightColor,
                                vec3 normal,
@@ -116,6 +120,8 @@ Color Scene::findColor(Intersection *in) {
     color.r += in->shape->ambient[0];
     color.g += in->shape->ambient[1];
     color.b += in->shape->ambient[2];
+    
+
     
     
     for (int i = 0; i < num_lights; i++) {

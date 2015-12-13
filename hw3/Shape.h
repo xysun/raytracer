@@ -35,6 +35,7 @@ public:
     float shininess = 0;
     float specular[3] = {0,0,0};
     float ambient[3] = {0.2,0.2,0.2};
+    float emission[3] = {0,0,0};
     
     glm::mat4 transform = glm::mat4(1,0,0,0,
                                     0,1,0,0,
@@ -65,6 +66,12 @@ public:
         ambient[0] = _ambient[0];
         ambient[1] = _ambient[1];
         ambient[2] = _ambient[2];
+    }
+    
+    void set_emission(float _emission[3]){
+        emission[0] = _emission[0];
+        emission[1] = _emission[1];
+        emission[2] = _emission[2];
     }
     
     void set_transform(glm::mat4 _transform){

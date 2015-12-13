@@ -14,6 +14,7 @@ translate 1 2 3
 diffuse 1 2 3
 shininess 100
 specular 1 1 1
+emission 1 1 1
 sphere 1 2 3 4
 popTransform
 

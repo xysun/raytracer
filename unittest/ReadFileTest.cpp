@@ -35,8 +35,10 @@ TEST(ReadFileTest, ReadCorrectValues) {
         EXPECT_EQ(sphere->specular[i], specular1[i]);
     }
     float ambient[3] = {10,20,30};
+    float emission[3] = {1,1,1};
     for (int i = 0; i < 3; i++) {
         EXPECT_EQ(sphere->ambient[i], ambient[i]);
+        EXPECT_EQ(sphere->emission[i], emission[i]);
     }
     EXPECT_EQ(sphere->transform, glm::mat4(1,0,0,0,
                                            0,1,0,0,
