@@ -36,6 +36,11 @@ public:
     float specular[3] = {0,0,0};
     float ambient[3] = {0.2,0.2,0.2};
     
+    glm::mat4 transform = glm::mat4(1,0,0,0,
+                                    0,1,0,0,
+                                    0,0,1,0,
+                                    0,0,0,1); // identity
+    
     virtual bool intersectP(Ray &ray) = 0;
     virtual bool intersect(Ray &ray, float *thit, LocalGeo *local) = 0;
     virtual ~Shape() {};
@@ -60,6 +65,10 @@ public:
         ambient[0] = _ambient[0];
         ambient[1] = _ambient[1];
         ambient[2] = _ambient[2];
+    }
+    
+    void set_transform(glm::mat4 _transform){
+        transform = _transform;
     }
 };
 

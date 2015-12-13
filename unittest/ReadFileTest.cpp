@@ -38,6 +38,10 @@ TEST(ReadFileTest, ReadCorrectValues) {
     for (int i = 0; i < 3; i++) {
         EXPECT_EQ(sphere->ambient[i], ambient[i]);
     }
+    EXPECT_EQ(sphere->transform, glm::mat4(1,0,0,0,
+                                           0,1,0,0,
+                                           0,0,1,0,
+                                           1,2,3,1));
     
     // sphere2
     Sphere *sphere2 = dynamic_cast<Sphere*>(scene->shapes[1]);

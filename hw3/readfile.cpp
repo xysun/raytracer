@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <stack>
 
 using namespace std;
 
@@ -20,6 +21,13 @@ bool readvals(stringstream &s, const int numvals, float* values)
     return true; 
 }
 
+void rightmultiply(const glm::mat4 & M, stack<glm::mat4> &transfstack)
+{
+    glm::mat4 &T = transfstack.top();
+    T = T * M;
+}
+
+
 
 void readfile(const char* filename, Scene *scene)
 {
@@ -28,6 +36,10 @@ void readfile(const char* filename, Scene *scene)
     in.open(filename);
     
     if (in.is_open()) {
+        
+        stack <glm::mat4> transfstack;
+        transfstack.push(glm::mat4(1.0));  // identity
+        
         getline (in, str);
         
         while (in) {
@@ -93,6 +105,8 @@ void readfile(const char* filename, Scene *scene)
                         scene->shapes[scene->num_objects]->set_shininess(shininess);
                         scene->shapes[scene->num_objects]->set_specular(specular);
                         scene->shapes[scene->num_objects]->set_ambient(ambient);
+                        // set transform
+                        scene->shapes[scene->num_objects]->set_transform(transfstack.top());
                         scene->num_objects += 1;
                     }else{
                         printf("max number of objects reached\n");
@@ -112,6 +126,8 @@ void readfile(const char* filename, Scene *scene)
                         scene->shapes[scene->num_objects]->set_shininess(shininess);
                         scene->shapes[scene->num_objects]->set_specular(specular);
                         scene->shapes[scene->num_objects]->set_ambient(ambient);
+                        // set transform
+                        scene->shapes[scene->num_objects]->set_transform(transfstack.top());
                         scene->num_objects += 1;
                     }
                 }
@@ -158,6 +174,29 @@ void readfile(const char* filename, Scene *scene)
                     }
                 }
                 
+                else if (cmd == "translate") {
+                    validinput = readvals(s,3,values);
+                    if (validinput) {
+                        glm::mat4 translate_m = glm::mat4(1,0,0,0,
+                                                0,1,0,0,
+                                                0,0,1,0,
+                                                values[0], values[1], values[2], 1);
+                        
+                        rightmultiply(translate_m, transfstack);
+                    
+                    }
+                }
+                
+                else if (cmd == "pushTransform") {
+                    transfstack.push(transfstack.top());
+                } else if (cmd == "popTransform") {
+                    if (transfstack.size() <= 1) {
+                        cerr << "Stack has no elements.  Cannot Pop\n";
+                    } else {
+                        transfstack.pop();
+                    }
+                }
+
             }
             getline (in, str);
         }
