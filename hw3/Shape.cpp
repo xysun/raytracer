@@ -23,9 +23,13 @@ void Sphere::getQuadraticFunction(Ray &ray, float &a, float &b, float &c){
 
 bool Sphere::intersectP(Ray &ray){
     
+    // apply M-1 to ray
+    mat4 invTransform = glm::inverse(transform);
+    Ray rayTransformed = Ray(invTransform * ray.pos, invTransform*ray.dir, ray.t, ray.t_min, ray.t_max);
+    
     float _a, _b, _c;
     
-    getQuadraticFunction(ray, _a, _b, _c);
+    getQuadraticFunction(rayTransformed, _a, _b, _c);
     
     float delta = (_b) * (_b) - 4*(_a)*(_c);
     
@@ -38,9 +42,13 @@ bool Sphere::intersectP(Ray &ray){
 
 bool Sphere::intersect(Ray &ray, float *thit, LocalGeo *local){
     
+    // apply M-1 to ray
+    mat4 invTransform = glm::inverse(transform);
+    Ray rayTransformed = Ray(invTransform * ray.pos, invTransform*ray.dir, ray.t, ray.t_min, ray.t_max);
+    
     float a,b,c;
         
-    getQuadraticFunction(ray, a, b, c);
+    getQuadraticFunction(rayTransformed, a, b, c);
         
     float delta = b*b - 4*a*c;
         
@@ -67,7 +75,7 @@ bool Sphere::intersect(Ray &ray, float *thit, LocalGeo *local){
             }
         }
         
-        vec4 point = ray.pos + ray.dir * (*thit);
+        vec4 point = rayTransformed.pos + rayTransformed.dir * (*thit);
         vec4 normal = glm::normalize(point - vec4(center,1));
         *local = LocalGeo(Point(point), Normal(vec3(normal.x, normal.y, normal.z)));
         
@@ -110,6 +118,7 @@ void Triangle::baryCentric(vec4 p, float &alpha, float &beta, float &gamma){
 
 bool Triangle::intersectP(Ray &ray){
     
+    
     float *t = new float(0);
     LocalGeo *local = new LocalGeo(Point(), Normal());
     
@@ -123,11 +132,16 @@ bool Triangle::intersectP(Ray &ray){
 
 bool Triangle::intersect(Ray &ray, float *thit, LocalGeo *local){
     
+    mat4 invTransform = glm::inverse(transform);
+
+    Ray rayTransformed = Ray(invTransform * ray.pos, invTransform*ray.dir, ray.t, ray.t_min, ray.t_max);
+    
     // A B C clockwise: C = vert1, B = vert2, A = vert3
     // t = (A dot n - Ray.pos dot n) / (Ray.dir dot n)
     setNormal();
-    float t = (glm::dot(vec4(vert3,1), vec4(normal,1)) - glm::dot(ray.pos, vec4(normal,1))) / (glm::dot(ray.dir, vec4(normal,1)));
-    vec4 rayP = ray.pos + t * ray.dir;
+    float t = (glm::dot(vec4(vert3,1), vec4(normal,1)) - glm::dot(rayTransformed.pos, vec4(normal,1))) / (glm::dot(rayTransformed.dir, vec4(normal,1)));
+
+    vec4 rayP = rayTransformed.pos + t * rayTransformed.dir;
     
     // 0 <= beta <= 1; 0 <= gamma <= 1; beta + gamma <= 1
     float alpha, beta, gamma;
