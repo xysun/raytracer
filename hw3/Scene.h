@@ -57,4 +57,7 @@ public:
     
     void allocate_cube();
     
+    // helper function
+    static bool within(float out_left, float out_right, float in_left, float in_right);
+    
 };

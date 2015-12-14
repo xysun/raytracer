@@ -1,12 +1,105 @@
 #pragma once
 #include "Scene.h"
 #include "variables.h"
+#include <algorithm>
+
+bool Scene::within(float out_left, float out_right, float in_left, float in_right){
+    //1. in_left < out_left && in_right > out_left
+    if (in_left <= out_left && in_right >= out_left) {
+        return true;
+    }
+    // 2. in_right > out_right && in_left < out_right
+    if (in_right >= out_right && in_left <= out_right) {
+        return true;
+    }
+    // 3. in_left > out_left && in_right < out_right
+    if (in_left >= out_left && in_right <= out_right) {
+        return true;
+    }
+    
+    return false;
+}
+
 
 void Scene::allocate_cube(){
     // put shapes into cubes, using post-transformation positions;
-    // 1. get maxY, minY, maxX, minX
+    
+    float maxX = -INFINITY;
+    float minX = INFINITY;
+    float maxY = -INFINITY;
+    float minY = INFINITY;
+    float maxZ = -INFINITY;
+    float minZ = INFINITY;
+    
+    // 1. set maxY, minY, maxX, minX
+    for (int i = 0; i < num_objects; i++) {
+        shapes[i]->set_max_min_transformed_xyz();
+        if (shapes[i]->max_transformed_x > maxX) {
+            maxX = shapes[i]->max_transformed_x;
+        }
+        if (shapes[i]->min_transformed_x < minX) {
+            minX = shapes[i]->min_transformed_x;
+        }
+        
+        if (shapes[i]->max_transformed_y > maxY) {
+            maxY = shapes[i]->max_transformed_y;
+        }
+        if (shapes[i]->min_transformed_y < minY) {
+            minY = shapes[i]->min_transformed_y;
+        }
+        
+        if (shapes[i]->max_transformed_z > maxZ) {
+            maxZ = shapes[i]->max_transformed_z;
+        }
+        if (shapes[i]->min_transformed_z < minZ) {
+            minZ = shapes[i]->min_transformed_z;
+        }
+        
+        
+    }
+    
+    // cube: from (minX, minY, minZ) to (maxX, maxY, maxZ)
+    float total_size = std::max(std::max(maxX - minX, maxY - minY), maxZ - minZ);
+    float cube_size = total_size / cube_count;
+    
+    for (int i = 0; i < cube_count; i++) { // x
+        for (int j = 0; j < cube_count; j++) { // y
+            for (int k = 0; k < cube_count; k++) { // z
+                int c = i*cube_count*cube_count + j*cube_count + k;
+                cubes[c] = new Cube();
+                cubes[c]->lowerLeftCorner = vec3(minX + i * cube_size,
+                                            minY + j * cube_size,
+                                            minZ + k * cube_size);
+                cubes[c]->size = cube_size;
+            }
+        }
+    }
+    
+    // allocate shapes to cubes
+    // cube.minX <= minX <= cube.maxX || cube.minX <= maxX <= cube.maxX
+    for (int i = 0; i < cube_count * cube_count * cube_count; i++) {
+        for (int j = 0; j < num_objects; j++) {
+            
+            if (within(cubes[i]->min_transformed_x, cubes[i]->max_transformed_x, shapes[j]->min_transformed_x, shapes[j]->max_transformed_x) ||
+                within(cubes[i]->min_transformed_y, cubes[i]->max_transformed_y, shapes[j]->min_transformed_y, shapes[j]->max_transformed_y) ||
+                within(cubes[i]->min_transformed_z, cubes[i]->max_transformed_z, shapes[j]->min_transformed_z, shapes[j]->max_transformed_z) ) {
+                
+                    
+                    // add object to cube
+                    cubes[i]->shapes[cubes[i]->shape_count] = shapes[j];
+                    cubes[i]->shape_count ++;
+                    
+            }
+            
+        }
+    }
     
     
+    for (int i = 0; i < cube_count * cube_count * cube_count; i++) {
+        if (cubes[i]->shape_count > 0) {
+            printf("cube #%d has %d objects\n", i, cubes[i]->shape_count);
+        }
+    }
 }
 
 bool Scene::intersect(Ray &ray, float *thit, Intersection *in){

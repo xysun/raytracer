@@ -78,3 +78,17 @@ TEST(SceneTest, ReflectedRayTest){
     EXPECT_EQ(reflectedRay.pos, vec4(0,0,0,1));
     EXPECT_EQ(reflectedRay.dir, glm::normalize(vec4(1,1,0,0)));
 }
+
+TEST(SceneTest, AllocateCubeTest){
+    Scene *scene = new Scene(10,10);
+    
+    readfile("/Users/jsun/code/ucsd/hw3/unittest/SceneTest2.txt", scene);
+    
+    scene->allocate_cube();
+    
+    // should intersect all
+    for (int i = 0; i < cube_count * cube_count * cube_count; i++) {
+        EXPECT_EQ(scene->cubes[i]->shape_count, 2);
+    }
+
+}

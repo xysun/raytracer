@@ -115,6 +115,7 @@ public:
     vec3 lowerLeftCorner = vec3(0,0,0);
     float size = 0;
     Shape** shapes; // post-transform
+    int shape_count = 0;
     
     Cube(){
         shapes = new Shape*[max_objects];
@@ -125,6 +126,7 @@ public:
     bool intersect(Ray &ray, float *thit, LocalGeo *local){
         return intersectP(ray); // never use 
     }
+    void set_max_min_transformed_xyz();
 };
 
 class Triangle:public Shape{

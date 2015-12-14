@@ -113,3 +113,17 @@ TEST(CubeTest, IntersectTest){
     EXPECT_EQ(cube.intersectP(ray), true);
 }
 
+TEST(CubeTest, MaxMinTest){
+    Cube cube = Cube();
+    cube.lowerLeftCorner = vec3(-1,-1,0);
+    cube.size = 2;
+    cube.set_max_min_transformed_xyz();
+    
+    EXPECT_EQ(cube.min_transformed_x, -1);
+    EXPECT_EQ(cube.max_transformed_x, 1);
+    EXPECT_EQ(cube.min_transformed_y, -1);
+    EXPECT_EQ(cube.max_transformed_y, 1);
+    EXPECT_EQ(cube.min_transformed_z, -2);
+    EXPECT_EQ(cube.max_transformed_z, 0);
+}
+

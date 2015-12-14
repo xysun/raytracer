@@ -199,6 +199,17 @@ bool Cube::intersectP(Ray &ray){
     
     return tri1.intersectP(ray) || tri2.intersectP(ray);
     
+}
 
+void Cube::set_max_min_transformed_xyz(){
+    // no transformation for cube
+    min_transformed_x = lowerLeftCorner.x;
+    min_transformed_y = lowerLeftCorner.y;
+    min_transformed_z = lowerLeftCorner.z - size;
+    
+    max_transformed_x = lowerLeftCorner.x + size;
+    max_transformed_y = lowerLeftCorner.y + size;
+    max_transformed_z = lowerLeftCorner.z;
+    
 }
 
