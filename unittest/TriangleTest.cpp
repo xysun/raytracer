@@ -44,3 +44,25 @@ TEST(TriangleTest, IntersectTest){
     Ray ray2 = Ray(vec4(0,-1,2,1), vec4(0,0,-1,0), 0, 0, 100);
     EXPECT_EQ(tri.intersectP(ray2), false);
 }
+
+TEST(TriangleTest, MaxMinTransformedTest){
+    Triangle tri = Triangle();
+    
+    tri.vert1 = vec3(1,0,0);
+    tri.vert2 = vec3(0,1,0);
+    tri.vert3 = vec3(0,0,0);
+    
+    tri.set_transform(mat4(1,0,0,0,
+                           0,1,0,0,
+                           0,0,1,0,
+                           -1,0,0,1));
+    
+    tri.set_max_min_transformed_xyz();
+    
+    EXPECT_EQ(tri.max_transformed_x, 0);
+    EXPECT_EQ(tri.min_transformed_x, -1);
+    EXPECT_EQ(tri.max_transformed_y, 1);
+    EXPECT_EQ(tri.min_transformed_y, 0);
+    EXPECT_EQ(tri.max_transformed_z, 0);
+    EXPECT_EQ(tri.min_transformed_z, 0);
+}

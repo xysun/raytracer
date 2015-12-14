@@ -21,6 +21,8 @@ public:
     Shape** shapes;
     Light** lights;
     
+    Cube** cubes;
+    
     Camera* camera = new Camera(vec3(),vec3(),vec3(),0);
     
     Scene(int _w, int _h)
@@ -29,6 +31,7 @@ public:
         h = _h;
         shapes = new Shape*[max_objects];
         lights = new Light*[max_lights];
+        cubes = new Cube*[cube_count * cube_count * cube_count];
     };
     
     void set_attenuation(float _a[3]){
@@ -51,5 +54,7 @@ public:
                             vec3 normal,
                             vec3 halfvec,
                             Shape* shape);
+    
+    void allocate_cube();
     
 };

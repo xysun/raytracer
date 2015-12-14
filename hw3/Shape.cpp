@@ -1,12 +1,23 @@
 #include "Shape.h"
 #include <stdio.h>
 #include "variables.h"
+#include <algorithm>
 
 Sphere::Sphere(vec3 _center, float _radius){
     center = _center;
     radius = _radius;
 }
 
+
+void Sphere::set_max_min_transformed_xyz(){
+    vec4 transformed_center = transform * vec4(center, 1);
+    max_transformed_x = transformed_center.x + radius;
+    min_transformed_x = transformed_center.x - radius;
+    max_transformed_y = transformed_center.y + radius;
+    min_transformed_y = transformed_center.y - radius;
+    max_transformed_z = transformed_center.z + radius;
+    min_transformed_z = transformed_center.z - radius;
+}
 
 void Sphere::getQuadraticFunction(Ray &ray, float &a, float &b, float &c){
     vec3 p0 = vec3(ray.pos.x, ray.pos.y, ray.pos.z);
@@ -78,6 +89,22 @@ bool Sphere::intersect(Ray &ray, float *thit, LocalGeo *local){
     else{
         return false;
     }
+}
+
+void Triangle::set_max_min_transformed_xyz(){
+    
+    vec4 transformed_v1 = transform * vec4(vert1,1);
+    vec4 transformed_v2 = transform * vec4(vert2,1);
+    vec4 transformed_v3 = transform * vec4(vert3,1);
+    
+    min_transformed_x = std::min(std::min(transformed_v1.x, transformed_v2.x), transformed_v3.x);
+    max_transformed_x = std::max(std::max(transformed_v1.x, transformed_v2.x), transformed_v3.x);
+    min_transformed_y = std::min(std::min(transformed_v1.y, transformed_v2.y), transformed_v3.y);
+    max_transformed_y = std::max(std::max(transformed_v1.y, transformed_v2.y), transformed_v3.y);
+    min_transformed_z = std::min(std::min(transformed_v1.z, transformed_v2.z), transformed_v3.z);
+    max_transformed_z = std::max(std::max(transformed_v1.z, transformed_v2.z), transformed_v3.z);
+
+
 }
 
 void Triangle::setNormal(){

@@ -37,6 +37,14 @@ public:
     float ambient[3] = {0.2,0.2,0.2};
     float emission[3] = {0,0,0};
     
+    // max, min x y after transformation
+    float max_transformed_x = 0;
+    float min_transformed_x = 0;
+    float max_transformed_y = 0;
+    float min_transformed_y = 0;
+    float max_transformed_z = 0;
+    float min_transformed_z = 0;
+    
     glm::mat4 transform = glm::mat4(1,0,0,0,
                                     0,1,0,0,
                                     0,0,1,0,
@@ -45,6 +53,8 @@ public:
     virtual bool intersectP(Ray &ray) = 0;
     virtual bool intersect(Ray &ray, float *thit, LocalGeo *local) = 0;
     virtual ~Shape() {};
+    
+    virtual void set_max_min_transformed_xyz(){};
     
     void set_diffuse(float _diffuse[3]){
         diffuse[0] = _diffuse[0];
@@ -77,6 +87,8 @@ public:
     void set_transform(glm::mat4 _transform){
         transform = _transform;
     }
+    
+    
 };
 
 
@@ -95,6 +107,7 @@ public:
     
     bool intersectP(Ray &ray);
     bool intersect(Ray &ray, float *thit, LocalGeo *local);
+    void set_max_min_transformed_xyz();
 };
 
 class Cube:public Shape{
@@ -134,6 +147,7 @@ public:
     
     bool intersectP(Ray &ray);
     bool intersect(Ray &ray, float *thit, LocalGeo *local);
+    void set_max_min_transformed_xyz();
     
     // helper functions
     void baryCentric(vec4 p, float &alpha, float &beta, float &gamma);

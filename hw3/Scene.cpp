@@ -2,6 +2,13 @@
 #include "Scene.h"
 #include "variables.h"
 
+void Scene::allocate_cube(){
+    // put shapes into cubes, using post-transformation positions;
+    // 1. get maxY, minY, maxX, minX
+    
+    
+}
+
 bool Scene::intersect(Ray &ray, float *thit, Intersection *in){
     // go through every object in scene, return closest
     float _thit = INFINITY;

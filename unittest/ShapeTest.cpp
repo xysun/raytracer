@@ -86,6 +86,23 @@ TEST(SphereTest, TranslateIntersectNormalTest){
     EXPECT_EQ(local->normal.p, vec3(-1,0,0));
 }
 
+TEST(SphereTest, MaxMinTransformedTest){
+    Sphere sphere = Sphere(vec3(2,0,0), 1);
+    sphere.set_transform(mat4(1,0,0,0,
+                              0,1,0,0,
+                              0,0,1,0,
+                              -1,0,0,1)); // center now at (1,0,0)
+    sphere.set_max_min_transformed_xyz();
+    
+    EXPECT_EQ(sphere.max_transformed_x, 2);
+    EXPECT_EQ(sphere.min_transformed_x, 0);
+    EXPECT_EQ(sphere.max_transformed_y, 1);
+    EXPECT_EQ(sphere.min_transformed_y, -1);
+    EXPECT_EQ(sphere.max_transformed_z, 1);
+    EXPECT_EQ(sphere.min_transformed_z, -1);
+}
+
+
 TEST(CubeTest, IntersectTest){
     Cube cube = Cube();
     cube.lowerLeftCorner = vec3(-1,-1,0);

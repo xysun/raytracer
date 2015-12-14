@@ -1,6 +1,7 @@
 #pragma once
 const int max_objects = 5000000;
 const int max_lights = 100;
+const int cube_count = 5;
 
 typedef glm::vec4 vec4;
 typedef glm::mat4 mat4;
