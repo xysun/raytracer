@@ -205,11 +205,65 @@ void Cube::set_max_min_transformed_xyz(){
     // no transformation for cube
     min_transformed_x = lowerLeftCorner.x;
     min_transformed_y = lowerLeftCorner.y;
-    min_transformed_z = lowerLeftCorner.z - size;
+    min_transformed_z = lowerLeftCorner.z;
     
     max_transformed_x = lowerLeftCorner.x + size;
     max_transformed_y = lowerLeftCorner.y + size;
-    max_transformed_z = lowerLeftCorner.z;
+    max_transformed_z = lowerLeftCorner.z + size;
     
 }
 
+bool Cube::has_shape(Shape *shape){
+    
+    if (dynamic_cast<Sphere*>(shape)!=0) {
+        
+        Sphere *sphere = dynamic_cast<Sphere*>(shape);
+        
+        // cube center - sphere center < 2 * r
+        vec3 cube_center = vec3(lowerLeftCorner.x + size/2,
+                                lowerLeftCorner.y + size/2,
+                                lowerLeftCorner.z + size/2);
+        
+        
+        float distance = glm::distance(cube_center, sphere->center);
+        float half_size = size / 2.0f;
+        bool res = (distance <= (sphere->radius + sqrtf(half_size * half_size * 3)));
+        
+        return res;
+        
+    }
+    else if (dynamic_cast<Triangle*>(shape)!=0){
+        
+        Triangle *tri = dynamic_cast<Triangle*>(shape);
+        
+        // test for each vertex
+        if ((min_transformed_x <= tri->vert1.x && max_transformed_x >= tri->vert1.x) &&
+            (min_transformed_y <= tri->vert1.y && max_transformed_y >= tri->vert1.y) &&
+            (min_transformed_z <= tri->vert1.z && max_transformed_z >= tri->vert1.z)
+            ) {
+            return true;
+        }
+        
+        if ((min_transformed_x <= tri->vert2.x && max_transformed_x >= tri->vert2.x) &&
+            (min_transformed_y <= tri->vert2.y && max_transformed_y >= tri->vert2.y) &&
+            (min_transformed_z <= tri->vert2.z && max_transformed_z >= tri->vert2.z)
+            ) {
+            return true;
+        }
+        
+        if ((min_transformed_x <= tri->vert3.x && max_transformed_x >= tri->vert3.x) &&
+            (min_transformed_y <= tri->vert3.y && max_transformed_y >= tri->vert3.y) &&
+            (min_transformed_z <= tri->vert3.z && max_transformed_z >= tri->vert3.z)
+            ) {
+            return true;
+        }
+        
+        return false;
+        
+        
+    }
+    else{
+        return false;
+    }
+    
+}

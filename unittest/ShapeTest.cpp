@@ -123,7 +123,48 @@ TEST(CubeTest, MaxMinTest){
     EXPECT_EQ(cube.max_transformed_x, 1);
     EXPECT_EQ(cube.min_transformed_y, -1);
     EXPECT_EQ(cube.max_transformed_y, 1);
-    EXPECT_EQ(cube.min_transformed_z, -2);
-    EXPECT_EQ(cube.max_transformed_z, 0);
+    EXPECT_EQ(cube.min_transformed_z, 0);
+    EXPECT_EQ(cube.max_transformed_z, 2);
+}
+
+TEST(CubeTest, HasSphere){
+    Cube cube = Cube();
+    cube.lowerLeftCorner = vec3(-1,-1,0);
+    cube.size = 2;
+    cube.set_max_min_transformed_xyz();
+    
+    Sphere *sphere = new Sphere();
+    sphere->center = vec3(0,0,0);
+    sphere->radius = 1;
+    
+    EXPECT_EQ(cube.has_shape(sphere), true);
+    
+    
+    Sphere *sphere2 = new Sphere();
+    sphere2->center = vec3(3,0,0);
+    sphere2->radius = 1;
+    
+    EXPECT_EQ(cube.has_shape(sphere2), false);
+    
+}
+
+TEST(CubeTest, HasTriangle){
+    Cube cube = Cube();
+    cube.lowerLeftCorner = vec3(-1,-1,0);
+    cube.size = 2;
+    cube.set_max_min_transformed_xyz();
+    
+    Triangle *tri1 = new Triangle();
+    tri1->vert1 = vec3(2,0,0);
+    tri1->vert2 = vec3(1,1,0);
+    tri1->vert3 = vec3(0,0,0);
+    EXPECT_EQ(cube.has_shape(tri1), true);
+    
+    Triangle *tri2 = new Triangle();
+    tri2->vert1 = vec3(3,0,0);
+    tri2->vert2 = vec3(2,1,0);
+    tri2->vert3 = vec3(2,0,0);
+    EXPECT_EQ(cube.has_shape(tri2), false);
+    
 }
 

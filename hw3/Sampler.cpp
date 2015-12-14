@@ -22,7 +22,7 @@ bool Sampler::getSample(Sample *sample){
     }else{
         *sample = Sample(current_pixel % width + 0.5, current_pixel / width + 0.5);
         current_pixel += 1;
-        if (current_pixel % 100 == 0){
+        if (current_pixel % 10000 == 0){
             printf("pixels drawn: %d / %d\n", current_pixel, pixels);
         }
         return true;

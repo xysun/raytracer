@@ -92,6 +92,7 @@
 
 /* Begin PBXFileReference section */
 		9D078C611C07E80E00611678 /* ShapeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapeTest.cpp; sourceTree = "<group>"; };
+		9D3EEC9D1C1F0D8B00CD82C7 /* SceneTest4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SceneTest4.txt; sourceTree = "<group>"; };
 		9D4176211BF961CE0098D913 /* osxlib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = osxlib; path = hw3/osxlib; sourceTree = "<group>"; };
 		9D4176221BF961CE0098D913 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; name = include; path = hw3/include; sourceTree = "<group>"; };
 		9D4176231BF961CE0098D913 /* testscenes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = testscenes; path = hw3/testscenes; sourceTree = "<group>"; };
@@ -257,6 +258,7 @@
 				9DD8F49A1C0D320E00374628 /* SceneTest2.txt */,
 				9DEBB5F21C1B0E430086C3AD /* TriangleTest.cpp */,
 				9DEBB5F51C1D912C0086C3AD /* SceneTest3.txt */,
+				9D3EEC9D1C1F0D8B00CD82C7 /* SceneTest4.txt */,
 			);
 			path = unittest;
 			sourceTree = "<group>";

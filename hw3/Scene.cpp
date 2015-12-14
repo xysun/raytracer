@@ -3,24 +3,6 @@
 #include "variables.h"
 #include <algorithm>
 
-bool Scene::within(float out_left, float out_right, float in_left, float in_right){
-    //1. in_left < out_left && in_right > out_left
-    if (in_left <= out_left && in_right >= out_left) {
-        return true;
-    }
-    // 2. in_right > out_right && in_left < out_right
-    if (in_right >= out_right && in_left <= out_right) {
-        return true;
-    }
-    // 3. in_left > out_left && in_right < out_right
-    if (in_left >= out_left && in_right <= out_right) {
-        return true;
-    }
-    
-    return false;
-}
-
-
 void Scene::allocate_cube(){
     // put shapes into cubes, using post-transformation positions;
     
@@ -34,6 +16,7 @@ void Scene::allocate_cube(){
     // 1. set maxY, minY, maxX, minX
     for (int i = 0; i < num_objects; i++) {
         shapes[i]->set_max_min_transformed_xyz();
+        
         if (shapes[i]->max_transformed_x > maxX) {
             maxX = shapes[i]->max_transformed_x;
         }
@@ -71,6 +54,7 @@ void Scene::allocate_cube(){
                                             minY + j * cube_size,
                                             minZ + k * cube_size);
                 cubes[c]->size = cube_size;
+                cubes[c]->set_max_min_transformed_xyz();
             }
         }
     }
@@ -80,15 +64,9 @@ void Scene::allocate_cube(){
     for (int i = 0; i < cube_count * cube_count * cube_count; i++) {
         for (int j = 0; j < num_objects; j++) {
             
-            if (within(cubes[i]->min_transformed_x, cubes[i]->max_transformed_x, shapes[j]->min_transformed_x, shapes[j]->max_transformed_x) ||
-                within(cubes[i]->min_transformed_y, cubes[i]->max_transformed_y, shapes[j]->min_transformed_y, shapes[j]->max_transformed_y) ||
-                within(cubes[i]->min_transformed_z, cubes[i]->max_transformed_z, shapes[j]->min_transformed_z, shapes[j]->max_transformed_z) ) {
-                
-                    
-                    // add object to cube
-                    cubes[i]->shapes[cubes[i]->shape_count] = shapes[j];
-                    cubes[i]->shape_count ++;
-                    
+            if (cubes[i]->has_shape(shapes[j])) {
+                cubes[i]->shapes[cubes[i]->shape_count] = shapes[j];
+                cubes[i]->shape_count ++;
             }
             
         }

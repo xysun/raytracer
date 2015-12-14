@@ -127,6 +127,7 @@ public:
         return intersectP(ray); // never use 
     }
     void set_max_min_transformed_xyz();
+    bool has_shape(Shape *shape);
 };
 
 class Triangle:public Shape{

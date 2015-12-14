@@ -34,6 +34,7 @@ int main(int argc, const char * argv[]) {
     auto tm = *std::localtime(&t);
     std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S") << std::endl;
     
+    scene->allocate_cube();
     
     while (sampler.getSample(sample)) {
         film.commit(*sample, black); // default black
