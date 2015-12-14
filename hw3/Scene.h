@@ -17,6 +17,7 @@ public:
     int current_vertex = 0;
     int maxdepth = 0;
     float attenuation[3] = {1,0,0};
+    bool cube_allocated = false;
     
     Shape** shapes;
     Light** lights;

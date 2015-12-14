@@ -188,8 +188,9 @@ bool Triangle::intersect(Ray &ray, float *thit, LocalGeo *local){
 bool Cube::intersectP(Ray &ray){
     
     // no need to apply transform to ray
+    // NOTE: lowerLeftCorner is minZ, we want maxZ here
     
-    vec3 v1 = lowerLeftCorner;
+    vec3 v1 = vec3(lowerLeftCorner.x, lowerLeftCorner.y, lowerLeftCorner.z + size);
     vec3 v2 = vec3(v1.x, v1.y + size, v1.z);
     vec3 v3 = vec3(v1.x + size, v1.y + size, v1.z);
     vec3 v4 = vec3(v1.x + size, v1.y, v1.z);
@@ -198,6 +199,34 @@ bool Cube::intersectP(Ray &ray){
     Triangle tri2 = Triangle(v4,v3,v2);
     
     return tri1.intersectP(ray) || tri2.intersectP(ray);
+    
+}
+
+bool Cube::intersect(Ray &ray, float *thit, Intersection *in) {
+    // return closest, assuming already intersect with cube
+    // go through every object in cube, return closest
+    float _thit = INFINITY;
+    LocalGeo _local = LocalGeo(Point(vec4(0,0,0,1)), Normal(vec3(0,0,0)));
+    Shape *_shape = new Sphere();
+    
+    bool hit = false;
+    
+    for (int i = 0; i < shape_count; i++) {
+        if (shapes[i]->intersect(ray, thit, in->localGeo)){
+            if (*thit <= _thit) {
+                _thit = *thit;
+                _local = *(in->localGeo);
+                _shape = shapes[i];
+            }
+            hit = true;
+        }
+    }
+    
+    *thit = _thit;
+    *(in->localGeo) = _local;
+    in->shape = _shape;
+    
+    return hit;
     
 }
 
@@ -219,13 +248,17 @@ bool Cube::has_shape(Shape *shape){
         
         Sphere *sphere = dynamic_cast<Sphere*>(shape);
         
+        vec4 transformed_center = sphere->transform * vec4(sphere->center,1);
+        
         // cube center - sphere center < 2 * r
         vec3 cube_center = vec3(lowerLeftCorner.x + size/2,
                                 lowerLeftCorner.y + size/2,
                                 lowerLeftCorner.z + size/2);
         
         
-        float distance = glm::distance(cube_center, sphere->center);
+        float distance = glm::distance(cube_center, vec3(transformed_center.x,
+                                                         transformed_center.y,
+                                                         transformed_center.z));
         float half_size = size / 2.0f;
         bool res = (distance <= (sphere->radius + sqrtf(half_size * half_size * 3)));
         
@@ -236,24 +269,33 @@ bool Cube::has_shape(Shape *shape){
         
         Triangle *tri = dynamic_cast<Triangle*>(shape);
         
+        vec4 vert14 = tri->transform * vec4(tri->vert1,1);
+        vec3 vert1 = vec3(vert14.x, vert14.y, vert14.z);
+        
+        vec4 vert24 = tri->transform * vec4(tri->vert2,1);
+        vec3 vert2 = vec3(vert24.x, vert24.y, vert24.z);
+        
+        vec4 vert34 = tri->transform * vec4(tri->vert3,1);
+        vec3 vert3 = vec3(vert34.x, vert34.y, vert34.z);
+        
         // test for each vertex
-        if ((min_transformed_x <= tri->vert1.x && max_transformed_x >= tri->vert1.x) &&
-            (min_transformed_y <= tri->vert1.y && max_transformed_y >= tri->vert1.y) &&
-            (min_transformed_z <= tri->vert1.z && max_transformed_z >= tri->vert1.z)
+        if ((min_transformed_x <= vert1.x && max_transformed_x >= vert1.x) &&
+            (min_transformed_y <= vert1.y && max_transformed_y >= vert1.y) &&
+            (min_transformed_z <= vert1.z && max_transformed_z >= vert1.z)
             ) {
             return true;
         }
         
-        if ((min_transformed_x <= tri->vert2.x && max_transformed_x >= tri->vert2.x) &&
-            (min_transformed_y <= tri->vert2.y && max_transformed_y >= tri->vert2.y) &&
-            (min_transformed_z <= tri->vert2.z && max_transformed_z >= tri->vert2.z)
+        if ((min_transformed_x <= vert2.x && max_transformed_x >= vert2.x) &&
+            (min_transformed_y <= vert2.y && max_transformed_y >= vert2.y) &&
+            (min_transformed_z <= vert2.z && max_transformed_z >= vert2.z)
             ) {
             return true;
         }
         
-        if ((min_transformed_x <= tri->vert3.x && max_transformed_x >= tri->vert3.x) &&
-            (min_transformed_y <= tri->vert3.y && max_transformed_y >= tri->vert3.y) &&
-            (min_transformed_z <= tri->vert3.z && max_transformed_z >= tri->vert3.z)
+        if ((min_transformed_x <= vert3.x && max_transformed_x >= vert3.x) &&
+            (min_transformed_y <= vert3.y && max_transformed_y >= vert3.y) &&
+            (min_transformed_z <= vert3.z && max_transformed_z >= vert3.z)
             ) {
             return true;
         }

@@ -110,6 +110,14 @@ public:
     void set_max_min_transformed_xyz();
 };
 
+class Intersection{
+public:
+    LocalGeo *localGeo = new LocalGeo(Point(), Normal());
+    Shape * shape = new Sphere();
+    Intersection(){};
+};
+
+
 class Cube:public Shape{
 public:
     vec3 lowerLeftCorner = vec3(0,0,0);
@@ -123,8 +131,9 @@ public:
     ~Cube(){};
     
     bool intersectP(Ray &ray);
+    bool intersect(Ray &ray, float *thit, Intersection *in);
     bool intersect(Ray &ray, float *thit, LocalGeo *local){
-        return intersectP(ray); // never use 
+        return false; // never called
     }
     void set_max_min_transformed_xyz();
     bool has_shape(Shape *shape);
@@ -157,11 +166,5 @@ public:
 };
 
 
-class Intersection{
-public:
-    LocalGeo *localGeo = new LocalGeo(Point(), Normal());
-    Shape * shape = new Sphere();
-    Intersection(){};
-};
 
 

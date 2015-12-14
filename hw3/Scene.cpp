@@ -78,9 +78,20 @@ void Scene::allocate_cube(){
             printf("cube #%d has %d objects\n", i, cubes[i]->shape_count);
         }
     }
+    
+    // set flag on
+    cube_allocated = true;
 }
 
 bool Scene::intersect(Ray &ray, float *thit, Intersection *in){
+    
+    // TODO: write cube intersect test for transforms
+    
+    // check if cube allocated
+    if (!cube_allocated) {
+        allocate_cube();
+    }
+    
     // go through every object in scene, return closest
     float _thit = INFINITY;
     LocalGeo _local = LocalGeo(Point(vec4(0,0,0,1)), Normal(vec3(0,0,0)));
@@ -88,16 +99,18 @@ bool Scene::intersect(Ray &ray, float *thit, Intersection *in){
     
     bool hit = false;
     
-    // go through grid first
+    // go through each cube
     
-    for (int i = 0; i < num_objects; i++) {
-        if (shapes[i]->intersect(ray, thit, in->localGeo)){
-            if (*thit <= _thit) {
-                _thit = *thit;
-                _local = *(in->localGeo);
-                _shape = shapes[i];
+    for (int i = 0; i < cube_count * cube_count * cube_count; i++) {
+        if (cubes[i]->shape_count > 0 &&  cubes[i]->intersectP(ray)) {// quick test
+            if (cubes[i]->intersect(ray, thit, in)){
+                if (*thit <= _thit) {
+                    _thit = *thit;
+                    _local = *(in->localGeo);
+                    _shape = in->shape;
+                }
+                hit = true;
             }
-            hit = true;
         }
     }
     
@@ -110,6 +123,8 @@ bool Scene::intersect(Ray &ray, float *thit, Intersection *in){
 }
 
 bool Scene::intersectP(Ray &ray, Shape *shape){
+    
+    // TODO: switch to cube based, test t in client code
     
     // set min t
     float threshold = 0.0001;
@@ -191,6 +206,9 @@ void Scene::rayTrace(Ray &ray, int depth, Color *color) {
         *color = Color(0,0,0);
         return;
     }
+    
+    // test each cube
+    
     
     float *thit = new float(INFINITY);
     Intersection *in = new Intersection();
