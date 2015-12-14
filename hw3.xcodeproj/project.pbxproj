@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9D078C621C07E80E00611678 /* ShapeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D078C611C07E80E00611678 /* ShapeTest.cpp */; };
+		9D3EEC9F1C1F297200CD82C7 /* NOTES.md in Sources */ = {isa = PBXBuildFile; fileRef = 9D3EEC9E1C1F297200CD82C7 /* NOTES.md */; };
 		9D7BF8AC1C04AE8B005AD405 /* TransformTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D7BF8AB1C04AE8B005AD405 /* TransformTest.cpp */; };
 		9D7BF8AE1C04B856005AD405 /* Shape.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D7BF8AD1C04B856005AD405 /* Shape.h */; };
 		9D7BF8B01C04B8FF005AD405 /* Ray.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D7BF8AF1C04B8FF005AD405 /* Ray.h */; };
@@ -92,6 +93,7 @@
 
 /* Begin PBXFileReference section */
 		9D078C611C07E80E00611678 /* ShapeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapeTest.cpp; sourceTree = "<group>"; };
+		9D3EEC9E1C1F297200CD82C7 /* NOTES.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = NOTES.md; sourceTree = "<group>"; };
 		9D4176211BF961CE0098D913 /* osxlib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = osxlib; path = hw3/osxlib; sourceTree = "<group>"; };
 		9D4176221BF961CE0098D913 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; name = include; path = hw3/include; sourceTree = "<group>"; };
 		9D4176231BF961CE0098D913 /* testscenes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = testscenes; path = hw3/testscenes; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		9D41760B1BF961370098D913 = {
 			isa = PBXGroup;
 			children = (
+				9D3EEC9E1C1F297200CD82C7 /* NOTES.md */,
 				9DBC7B1D1C0A13B000F381A3 /* README.md */,
 				9DD852C81BFC08EF00FE12E3 /* Cocoa.framework */,
 				9D4176261BF966380098D913 /* hw3-submissionscenes */,
@@ -432,6 +435,7 @@
 				9DD8F48E1C0D2C1200374628 /* Scene.cpp in Sources */,
 				9DBA6F6D1BFCC270008DD6E6 /* Film.cpp in Sources */,
 				9DF235301C029D34006A1909 /* readfile.cpp in Sources */,
+				9D3EEC9F1C1F297200CD82C7 /* NOTES.md in Sources */,
 				9DA224D61C03F36400C99255 /* Transform.cpp in Sources */,
 				9DBC7B1E1C0A13B000F381A3 /* README.md in Sources */,
 				9D7BF8B21C04B9BC005AD405 /* Shape.cpp in Sources */,

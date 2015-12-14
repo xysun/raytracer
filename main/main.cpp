@@ -1,21 +1,9 @@
-//
-//  main.cpp
-//  main
-//
-//  Created by Sun, Joy (Agoda) on 11/18/2558 BE.
-//  Copyright © 2558 Sun, Joy (Agoda). All rights reserved.
-//
-
-//
-//  main.cpp
-//  hw3
-//
-//  Created by Sun, Joy (Agoda) on 11/16/2558 BE.
-//  Copyright © 2558 Sun, Joy (Agoda). All rights reserved.
-//
+//  Created by jsun on 11/18/2558 BE.
 
 #include <iostream>
 #include <FreeImage.h>
+#include <iomanip>
+#include <ctime>
 
 #include "Film.h"
 #include "readfile.h"
@@ -41,6 +29,11 @@ int main(int argc, const char * argv[]) {
     
     Ray *ray = new Ray(vec3(0,0,0), vec3(0,0,0), 0, 0, 100);
     
+    printf("start rendering.. objects count: %d lights count: %d \n", scene->num_objects, scene->num_lights);
+    auto t = std::time(nullptr);
+    auto tm = *std::localtime(&t);
+    std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S") << std::endl;
+
     
     while (sampler.getSample(sample)) {
         film.commit(*sample, black); // default black
