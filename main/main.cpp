@@ -1,20 +1,8 @@
-//
-//  main.cpp
-//  main
-//
-//  Created by Sun, Joy (Agoda) on 11/18/2558 BE.
-//  Copyright © 2558 Sun, Joy (Agoda). All rights reserved.
-//
-
-//
-//  main.cpp
-//  hw3
-//
-//  Created by Sun, Joy (Agoda) on 11/16/2558 BE.
-//  Copyright © 2558 Sun, Joy (Agoda). All rights reserved.
-//
+//  Created by jsun
 
 #include <iostream>
+#include <iomanip>
+#include <ctime>
 #include <FreeImage.h>
 
 #include "Film.h"
@@ -41,6 +29,11 @@ int main(int argc, const char * argv[]) {
     
     Ray *ray = new Ray(vec3(0,0,0), vec3(0,0,0), 0, 0, 100);
     
+    printf("start rendering.. objects count: %d lights count: %d \n", scene->num_objects, scene->num_lights);
+    auto t = std::time(nullptr);
+    auto tm = *std::localtime(&t);
+    std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S") << std::endl;
+    
     
     while (sampler.getSample(sample)) {
         film.commit(*sample, black); // default black
@@ -53,6 +46,11 @@ int main(int argc, const char * argv[]) {
     }
     
     film.writeImage();
+    
+    auto t2 = std::time(nullptr);
+    auto tm2 = *std::localtime(&t2);
+    std::cout << std::put_time(&tm2, "%d-%m-%Y %H-%M-%S") << std::endl;
+    
     
     // release dynamically allocated memory
     delete sample;

@@ -86,6 +86,7 @@ public:
     vec3 center;
     float radius;
     Sphere(vec3, float);
+    
     Sphere(){
         center = vec3(0,0,0);
         radius = 0;
@@ -94,6 +95,23 @@ public:
     
     bool intersectP(Ray &ray);
     bool intersect(Ray &ray, float *thit, LocalGeo *local);
+};
+
+class Cube:public Shape{
+public:
+    vec3 lowerLeftCorner = vec3(0,0,0);
+    float size = 0;
+    Shape** shapes; // post-transform
+    
+    Cube(){
+        shapes = new Shape*[max_objects];
+    };
+    ~Cube(){};
+    
+    bool intersectP(Ray &ray);
+    bool intersect(Ray &ray, float *thit, LocalGeo *local){
+        return intersectP(ray); // never use 
+    }
 };
 
 class Triangle:public Shape{

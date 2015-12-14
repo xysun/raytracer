@@ -86,3 +86,13 @@ TEST(SphereTest, TranslateIntersectNormalTest){
     EXPECT_EQ(local->normal.p, vec3(-1,0,0));
 }
 
+TEST(CubeTest, IntersectTest){
+    Cube cube = Cube();
+    cube.lowerLeftCorner = vec3(-1,-1,0);
+    cube.size = 2;
+    
+    Ray ray = Ray(vec3(0,0,2), vec3(0,0,-1), 0, 0, 100);
+    
+    EXPECT_EQ(cube.intersectP(ray), true);
+}
+

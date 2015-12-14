@@ -10,6 +10,8 @@ bool Scene::intersect(Ray &ray, float *thit, Intersection *in){
     
     bool hit = false;
     
+    // go through grid first
+    
     for (int i = 0; i < num_objects; i++) {
         if (shapes[i]->intersect(ray, thit, in->localGeo)){
             if (*thit <= _thit) {

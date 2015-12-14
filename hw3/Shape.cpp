@@ -133,7 +133,7 @@ bool Triangle::intersect(Ray &ray, float *thit, LocalGeo *local){
     // A B C clockwise: C = vert1, B = vert2, A = vert3
     // t = (A dot n - Ray.pos dot n) / (Ray.dir dot n)
     setNormal();
-    float t = (glm::dot(vec4(vert3,1), vec4(normal,1)) - glm::dot(rayTransformed.pos, vec4(normal,1))) / (glm::dot(rayTransformed.dir, vec4(normal,1)));
+    float t = (glm::dot(vec4(vert3,1), vec4(normal,1)) - glm::dot(rayTransformed.pos, vec4(normal,1))) / (glm::dot(rayTransformed.dir, vec4(normal,0)));
 
     vec4 rayP = rayTransformed.pos + t * rayTransformed.dir;
     
@@ -157,3 +157,21 @@ bool Triangle::intersect(Ray &ray, float *thit, LocalGeo *local){
         return false;
     }
 }
+
+bool Cube::intersectP(Ray &ray){
+    
+    // no need to apply transform to ray
+    
+    vec3 v1 = lowerLeftCorner;
+    vec3 v2 = vec3(v1.x, v1.y + size, v1.z);
+    vec3 v3 = vec3(v1.x + size, v1.y + size, v1.z);
+    vec3 v4 = vec3(v1.x + size, v1.y, v1.z);
+    
+    Triangle tri1 = Triangle(v4, v2, v1);
+    Triangle tri2 = Triangle(v4,v3,v2);
+    
+    return tri1.intersectP(ray) || tri2.intersectP(ray);
+    
+
+}
+
